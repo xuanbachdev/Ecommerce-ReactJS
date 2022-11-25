@@ -1,0 +1,180 @@
+.container {
+	max-width: 1175px;
+	height: 400px;
+	margin: 0 auto;
+	border-radius: 5px;
+	margin-bottom: 100px;
+	& input:not([type='file']),
+	select {
+		border: 1px solid #ccc;
+		height: 30px;
+		padding: 5px 10px;
+		color: #555;
+		line-height: 1.5;
+		border-radius: 5px;
+		margin-bottom: 10px;
+		width: 75%;
+		caret-color: #f05123;
+		font-size: 14px;
+		&:focus {
+			border-color: #66afe9;
+			outline: none;
+			box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%),
+				0 0 8px rgb(102 175 233 / 60%);
+		}
+		&[readOnly] {
+			cursor: not-allowed;
+		}
+	}
+	& h1 {
+		padding: 10px;
+		font-size: 36px;
+		color: #252a2b;
+		font-weight: 500;
+		line-height: 1.2;
+	}
+}
+
+.text-user {
+	font-size: 20px;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 15px 0;
+	color: #394a5d;
+	margin-top: 40px;
+	font-weight: 700;
+}
+
+.title {
+	font-size: 20px;
+	border-bottom: 1px solid #000;
+	color: #545454;
+	font-weight: 700;
+}
+.info {
+	font-size: 14px;
+	margin-top: 10px;
+	font-weight: 400;
+	& p {
+		margin-bottom: 15px;
+		cursor: pointer;
+	}
+}
+
+.favorite_product {
+	margin: 20px;
+	height: 300px;
+	overflow: auto;
+}
+
+.favorite_product::-webkit-scrollbar {
+	width: 10px;
+}
+.favorite_product::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: rgba(0, 0, 0, 0.15);
+}
+.favorite_product::-webkit-scrollbar-track {
+	border-radius: 0;
+	background-color: #f2f2f2;
+	border: none;
+}
+
+label {
+	font-size: 14px;
+	width: 30%;
+	margin-right: 20px;
+	padding: 10px;
+	font-weight: 700;
+}
+
+#formAcc {
+	width: 66.67%;
+	padding: 16px 50px 16px 16px;
+	margin: 0 auto;
+}
+
+.formcontrol {
+	display: flex;
+}
+
+.btn {
+	display: block;
+	width: 150px;
+	height: 35px;
+	border-radius: 5px;
+	margin: 15px auto;
+	background-color: rgba($color: #0b74e5, $alpha: 0.4);
+	color: #fff;
+	cursor: pointer;
+	&:hover {
+		background-color: #f05123;
+	}
+}
+
+table {
+	font-size: 14px;
+	height: auto;
+}
+
+.img_wishlist {
+	width: 100px;
+	height: 100px;
+}
+
+// Upload avatar
+.upload_avatar {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 110px;
+	height: 110px;
+	background-color: #fff;
+	margin: auto;
+	border: 1px dashed #d9d9d9;
+	cursor: pointer;
+	border-radius: 5px;
+	animation: border_color 1s infinite;
+	& input {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		cursor: pointer;
+	}
+}
+
+.avatar_preview {
+	width: 100px;
+	height: 80px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+@keyframes border_color {
+	0% {
+		border-color: rgb(183, 68, 68);
+	}
+	25% {
+		border-color: rgb(202, 202, 78);
+	}
+	50% {
+		border-color: rgb(76, 211, 76);
+	}
+	100% {
+		border-color: rgb(209, 89, 209);
+	}
+}
+
+// Responsive
+
+@media only screen and (max-width: 510px) {
+	.wrapper {
+		margin-top: 100px;
+	}
+}
