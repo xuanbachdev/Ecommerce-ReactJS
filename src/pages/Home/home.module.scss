@@ -1,0 +1,62 @@
+.slider {
+    height: 90vh;  
+    background:no-repeat center/110% url("../../assets/images/backroundWebOfB5.png");
+}
+.icons {
+    display: flex;
+    margin-bottom: 100px;
+    justify-content: center;
+}
+//IconCategory
+.body {
+    width: 74px;
+    margin: 0 20px 10px 20px;
+    font-size: 14px;
+    text-align: center;
+   
+    img {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        padding: 10px;
+        height: 70px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        border: 1px solid #c3c3c3;
+        box-shadow: 0 1px 4px 0 rgb(0 0 0 / 12%);
+        background: linear-gradient(-180deg,#fbfbfb 0%,#f1f1f1 100%);
+    }
+    p {
+        
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+.active {
+    color: red;
+}
+//mobile
+@media only screen and (max-width: 600px) {
+    .slider {
+        height: 40vh;  
+        background-size: 140%;
+        margin-top:86px ;
+    }
+    .icons {
+        display: none;
+    }
+}
+@media only screen and (min-width:601px) and (max-width:1101px) {
+  .slider {
+    height: 60vh;
+    background-size: 140%;
+  }
+}
+@media only screen and (min-width:887px) and (max-width:1101px) {
+    .slider {
+      height: 70vh;
+      background-size: 120%;
+    }
+  }
