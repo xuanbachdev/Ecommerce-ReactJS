@@ -1,16 +1,15 @@
-import Home from '~/page/Home/home';
-import Category from '~/page/Category/category';
-import Login from '~/page/Login/login';
-import StoreInfor from "~/page/StoreInfor/StoreInfor"
-import DetailProduct from '~/page/DetailProduct/detailProduct';
-import Error404 from '~/page/Error404/Error404';
-import Search from '~/page/Search/serch';
-import MyStore from '~/page/MyStore/myStore'
-import Profile from '~/page/Profile/profile';
-import  {UpdateInfo}  from '~/page/Profile/updateInfo';
-import  {ChangePassword}  from '~/page/Profile/changePassword';
-import  {FavouriteProduct}  from '~/page/Profile/favourite_product';
-
+import Home from '~/pages/Home/home';
+import Category from '~/pages/Category/category';
+import Login from '~/pages/Login/login';
+import StoreInfor from "~/pages/StoreInfor/StoreInfor"
+import DetailProduct from '~/pages/DetailProduct/detailProduct';
+import Error404 from '~/pages/Error404/Error404';
+import Search from '~/pages/Search/serch';
+import MyStore from '~/pages/MyStore/myStore'
+import Profile from '~/pages/Profile/profile';
+import  {UpdateInfo}  from '~/pages/Profile/updateInfo';
+import  {ChangePassword}  from '~/pages/Profile/changePassword';
+import  {FavouriteProduct}  from '~/pages/Profile/favourite_product';
 
 const pageRoutes = [
     {path:'/',component: Home,layout:true},
