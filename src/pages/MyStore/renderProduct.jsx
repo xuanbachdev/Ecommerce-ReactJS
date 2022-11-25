@@ -8,14 +8,14 @@ import SelectProduct from '~/components/selectProduct/selectProduct';
 
 
 function RenderProduct() {
-    
+
     const [checkTotal,setCheckTotal]= useState(false)
     const [data,setData]=useState([])
     const totalProduct=useSelector(state=> state.counterProduct)
     const dispatch = useDispatch();
     const [totalPrice,setTotalPrice]=useState(0)
     const [checked,setChecked]= useState([])
-    
+
     const handleCheck=(id)=>{
         setChecked(prev=>{
         const isCheck=checked?.includes(id)
@@ -25,10 +25,10 @@ function RenderProduct() {
         }
         else return [...prev,id]
     })
-}   
-    
+}
+
     const amountProduct=useSelector(state=>state.amountProduct)
-    
+
     const handleIncrease=(index)=>{
         dispatch(increase())
         let newData=[...data]
@@ -49,7 +49,6 @@ function RenderProduct() {
     const handleDelete=(index)=>{
         let newData=[...data]
         newData.splice(index,1)
-        let data2=newData.map(value=>value._id)
         localStorage.removeItem('myStore')
         localStorage.setItem('myStore',JSON.stringify(newData))
         // setChecked(data2)
@@ -61,7 +60,7 @@ function RenderProduct() {
         let newData=[]
         console.log(checked);
         if (checked.length>0){
-            data.map(value=>{
+            data.map( (value) => {
                 let kt=false
                 for (let j=0;j<checked.length;j++){
                     if (value._id!==checked[j]){
@@ -75,7 +74,7 @@ function RenderProduct() {
                 }
                 if (kt) newData.push(value)
             })
-            
+
             localStorage.removeItem('myStore')
             localStorage.setItem('myStore',JSON.stringify(newData))
             setData(newData)
@@ -85,11 +84,11 @@ function RenderProduct() {
     }
 
     useEffect(()=>{
-        const dataTest=JSON.parse(localStorage.getItem('myStore'))  
+        const dataTest=JSON.parse(localStorage.getItem('myStore'))
         let newData=[...dataTest]
         // eslint-disable-next-line array-callback-return
         newData.map((value)=>{
-            if (value.amount==null) value.amount=amountProduct
+            if (value.amount===null) value.amount=amountProduct
             value.totalPrice=value.price*value.amount
             // if (!value.totalPrice) value.totalPrice='hết hàng'
             value.style='something'
@@ -99,12 +98,12 @@ function RenderProduct() {
         dispatch(counterTotalProduct())
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
-   
+
     useEffect(()=>{
         let price=0
         if (checked) {
             checked?.map(value => {
-                const dataPrice=data.find(item=>item._id == value)
+                const dataPrice=data.find(item=>item._id === value)
                 if (dataPrice?.totalPrice) price+=dataPrice.totalPrice
             })
         }
@@ -113,7 +112,7 @@ function RenderProduct() {
 
     const handleCheckTotal=()=>{
         setCheckTotal(()=>{
-        if (checkTotal==true) {
+        if (checkTotal===true) {
             setChecked([])
             return false
         }
@@ -134,8 +133,8 @@ function RenderProduct() {
         </div>
         <div className={styles.navContent}>
             <div className={styles.navTitleProducts}>
-                <input 
-                    type="checkbox" 
+                <input
+                    type="checkbox"
                     className={styles.checkbox}
                     checked={checkTotal}
                     onChange={()=>handleCheckTotal()}
@@ -158,9 +157,9 @@ function RenderProduct() {
                         </div>
                         <div className={ styles.childProduct}>
                             <div className={styles.navTitleProduct}>
-                                <input 
-                                type="checkbox"  
-                                className={styles.checkbox} 
+                                <input
+                                type="checkbox"
+                                className={styles.checkbox}
                                 checked={checked?.includes(value._id)||checkTotal}
                                 onChange={()=>handleCheck(value._id)}
                                 />
@@ -211,9 +210,9 @@ function RenderProduct() {
                                 </div>
                             </div>
                             <div className={styles.middlePay}>
-                                <input 
-                                type="checkbox" 
-                                id='12' 
+                                <input
+                                type="checkbox"
+                                id='12'
                                 className={styles.checkbox}
                                 checked={checkTotal}
                                 onChange={()=>handleCheckTotal()}
@@ -228,7 +227,7 @@ function RenderProduct() {
                                     Mua Hàng
                                 </Button>
                             </div>
-        </div> 
+        </div>
     </div>
   )
 }
