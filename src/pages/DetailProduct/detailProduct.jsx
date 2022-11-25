@@ -14,7 +14,6 @@ import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import HomeStore from "~/components/HomeStore/homeStore";
@@ -33,7 +32,7 @@ var clone = [{
     status: ""
 }]
 function Person() {
-    let nav=useNavigate()   
+    let nav=useNavigate()
     const  [isOpen,setIsOpen] = useState(false);
     const toggle=()=>{
         setIsOpen(!isOpen)
@@ -63,13 +62,6 @@ function Person() {
     const [valueName, setValueName] = useState('')
     const [valuePhone, setValuePhone] = useState('')
     const [valueAddress, setValueAddress] = useState('')
-    const config = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1
-    };
 
     var sum = count
     function Minus() {
@@ -161,7 +153,7 @@ function Person() {
     const handleOut = () => {
         setIsModalImgOpen(false);
     }
- 
+
     const HandleAddProduct = () => {
         if (localStorage.getItem('email'))
         {
@@ -202,15 +194,15 @@ function Person() {
         }
         else {
             let confirm=window.confirm('Vui lòng đăng nhập')
-            if (confirm) nav('/login') 
+            if (confirm) nav('/login')
                 else return
         }
     }
-    
+
     useEffect(() => {
         window.scroll(0, 0)
         axios.get(`/product/get-one-product/${productID}`)
-            .then(res => {  
+            .then(res => {
                 setProduct(res.data.product)
                 setListDtail(res.data.product.listDtail)
             })
@@ -230,12 +222,12 @@ function Person() {
     }, [product])
     return (
         <>
-            <Alert 
+            <Alert
                 title={'Thêm sản phẩm thành công - '}
                 url={'/myStore'}
                 title2={'Tới cửa hàng ngay'}
                 isOpen={isOpen}
-                hide={toggle} 
+                hide={toggle}
             />
             <div className={cx("header")}>
                 <FontAwesomeIcon icon={faHouse} />
