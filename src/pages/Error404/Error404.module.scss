@@ -1,0 +1,75 @@
+.slide_404Err{
+    border-top: 5px solid #ccc;
+    border-bottom: 5px solid #ccc;
+    height: 70vh;
+    text-align: center;
+}
+.slide_404Err button{
+    padding: 30px;
+    border-radius: 50px;
+    background-image: linear-gradient( to right, orange , orangered );
+    color: white;
+    cursor: pointer;
+    font-size: 25px;
+
+}
+
+.Error-notification{
+    margin: 150px 50px 20px 50px;
+    font-size: 90px;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient( to right,  orange,  orangered);
+}
+
+
+@media only screen and (max-width: 600px ){
+    .Error-notification{
+        font-size: 25px;
+        margin-top: 18%;
+    }
+    .slide_404Err button{
+        padding: 10px;
+        font-size: 20px;
+    }
+    .slide_404Err{
+        background-image: linear-gradient(135deg, pink, violet );
+        height: 300px;
+    }
+}
+@media only screen and (min-width:600px) and (max-width:1101px){
+    .slide_404Err{
+        height: 300px;
+    }
+    .Error-notification{
+        font-size: 35px;
+        margin-top: 15%;
+    }
+
+}
+@media only screen and (min-width:601px) and (max-width:886px){
+    .slide_404Err{
+        background-image: linear-gradient(135deg, pink, violet );
+    }
+    .Error-notification{
+        font-size: 35px;
+        margin-top: 10%;
+    }
+    .slide_404Err button{
+        padding: 10px;
+        font-size: 20px;
+    }
+}
+@media only screen and (min-width:887px) and (max-width:1101px){
+    .slide_404Err{
+        background-image: linear-gradient(135deg, pink, violet );
+    }
+    .slide_404Err{
+        height: 350px;
+    }
+    .Error-notification{
+        font-size: 35px;
+        margin-top: 12%;
+    }
+}
