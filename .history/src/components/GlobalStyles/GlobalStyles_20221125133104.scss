@@ -1,0 +1,81 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+$main-color: linear-gradient(to right, orange, orangered);
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	position: relative;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 600;
+	line-height: 1.5;
+	text-rendering: optimizeSpeed;
+}
+
+body::-webkit-scrollbar {
+	width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: rgba(0, 0, 0, 0.15);
+}
+body::-webkit-scrollbar-track {
+	border-radius: 0;
+	background-color: #f2f2f2;
+	border: none;
+}
+h4 {
+	font-size: 15px;
+	text-transform: uppercase;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+ul {
+	list-style: none;
+}
+
+button {
+	background: none;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.slick-prev:before,
+.slick-next:before {
+	font-size: 30px;
+}
+
+.slick-dots {
+	bottom: 2%;
+}
+
+input,
+button {
+	outline: none;
+	border: none;
+}
+
+::-webkit-input-placeholder {
+	font-size: 12px;
+	opacity: 0.5;
+}
+
+.text-center {
+	text-align: center;
+}
