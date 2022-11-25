@@ -1,0 +1,129 @@
+.wrapper {
+    text-align: center;
+    width: 21%;
+    margin-bottom: 60px;
+    transition: all 0.2s linear;
+    border-radius: 5px;
+    position: relative;
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    &:hover .action {
+        opacity: 1;
+    }
+    .info {
+        padding: 14px 0 50px 0;
+    }
+}
+.name {
+    padding: 0 10px;
+    font-weight: 500;
+    font-size: 20px; 
+    white-space: nowrap; 
+    width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.price {
+    color: #e01b22;
+    font-weight: bold;
+    font-size: 20px;
+}
+.image {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    transition: all 0.2s linear !important;
+    &:hover {
+        transform: scale(0.9);
+    }
+}
+.action {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    opacity: 0;
+    position: absolute;
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-around;
+    transition: all 0.2s linear ;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    p {
+        cursor: pointer;
+        padding: 10px;
+        width: 100%;
+        font-size: 16px;
+    }
+    .icon-action {
+        padding-right: 6px;
+        font-size: 16px;
+    }
+    a {
+        color:  white;
+    }
+    &::after {
+        
+        content: "";
+        position: absolute;
+        width: 0.5px;
+        background-color: #fff;
+        height: 20px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .link-product {
+        a {
+            color: #fff;
+            display: block;
+        }
+    }
+}
+
+//load
+.loadImage {
+    width: 270px;
+    height: 280px;
+}
+.loadText {
+    width: 100%;
+    padding-left: 10px;
+}
+.active {
+    color: blue;
+}
+//mobile
+@media only screen and (max-width: 600px) {
+	.wrapper {
+        width: 40%;
+        margin-bottom: 20px;
+        &:hover {
+            box-shadow: none;
+        }
+        .info {
+            padding: 0;
+        }
+     
+    }
+    .name,.price {
+        font-size: 14px;
+    }
+    .action {
+        display: none;
+    }
+    
+  }
+  @media only screen and (min-width:601px) and (max-width:1101px) {
+    .wrapper {
+        width: 30%;
+    }
+}
+@media only screen and (min-width:601px) and (max-width:886px) {
+    .wrapper {
+        width: 40.5%;
+    }
+}
