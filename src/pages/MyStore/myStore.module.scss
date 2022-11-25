@@ -1,0 +1,297 @@
+
+.container{
+    background-color: rgb(244, 244, 244);
+}
+
+.title{
+    display: flex;
+    width: 100%;
+    height: 60px;
+    
+
+}
+
+.title p:first-child{
+    font-size: 300%;
+    width:max-content;
+    margin: auto 1%;
+    font-weight: bold;
+}
+
+.title p:last-child{
+   margin: 2.5% 0.3%;
+   font-size: 140%;
+   color:rgb(42, 42, 42);
+}
+
+.title p span{
+    color: red;
+    font-weight: bold;
+}
+
+.navContent{
+    width:100%;
+    display: flex;
+    // justify-content: space-between;
+    font-size:150%;
+    background-color: rgb(255, 255, 255);
+    padding: 1% 0;
+    // margin:  0 auto 3% auto;
+    align-items: center;
+    border: 0.5px solid rgb(221, 221, 221);
+}
+
+.navTitleProducts{
+    width:48%;
+    display: flex;
+    margin-left: 2%;
+}
+
+.navTitleProducts span{
+    margin-left: 5%;
+}
+
+.navTitleProduct{
+    width:50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navTitle:last-of-type{
+    cursor: pointer;
+}
+
+.checkbox{
+    width: 4%;
+    margin:0 0 0 2%;
+    cursor: pointer;
+}
+
+.navTitleProduct >div{
+    display:flex;
+    flex-direction: column ;
+    width:24%;
+    margin-right: 10%;
+    text-align: start;
+    font-size: 95%;
+    font-weight: lighter;
+    margin:auto 0;
+}
+
+.navTitleProduct >img{
+    width:24;
+   
+}
+
+.childProductContainer{
+    width:100%;
+    border: 0.5px solid rgb(234, 234, 234);
+    height:max-content;
+    margin:2% 0;
+    padding: 2%;
+}
+
+.childProductContainerDeal{
+    width:100%;
+    margin: 0 auto;
+    border: 0.5px solid rgb(234, 234, 234);
+}
+
+.ProductDeal{
+   background-color: rgb(255, 241, 237);
+   height: 50px;
+   display: flex;
+}
+
+.ProductDeal span{
+    display: block;
+    margin: auto 0.5%;
+}
+
+.ProductDeal span:first-child{
+    border: 0.5px solid red;
+    color:red;
+    padding: 0.2%;
+    border-radius: 3px;
+}
+
+.ProductDeal span:last-child{
+    color:red;
+    font-size: 150%;
+    cursor: pointer;
+}
+
+.ProductDeal span:nth-child(2){
+    font-size: 150%;
+}
+.childProduct{
+    display: flex;
+    justify-content: space-between;
+    font-size:150%;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    align-items: center;
+    height:186px;
+   
+}
+
+.navTitle{
+    width:12%;
+    color:rgb(113, 113, 113);
+    text-align: center ;
+}
+
+.button{
+    padding:3%!important;
+    min-width: 30px !important;
+    background-color: white !important;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+
+}
+
+.buttonContainer p{
+    width:max-content;
+    background-color: white;
+    border: 1px solid rgba(25, 118, 210, 0.5);
+    border-radius: 4px;
+    padding:0 10%;
+}
+
+.styleProduct{
+    cursor: pointer;
+}
+
+.styleProduct p:first-of-type{
+    color:rgb(196, 0, 17);
+}
+.styleProduct p:nth-of-type(2){
+    color:rgb(199, 32, 149);
+}
+.styleProduct p:last-of-type{
+    color:rgba(0, 156, 44, 0.778);
+}
+.styleProduct span{
+    font-size: 90%;
+    text-align: center;
+    padding:2%;
+}
+
+.navTitle:nth-of-type(4){
+    color:red;
+}
+
+.navTitle:nth-of-type(3){
+    color:rgb(0, 0, 0);
+}
+
+.voucher{
+    width: 100%;
+    display:flex;
+    font-size: 120%;
+    align-items: center;
+    border: 0.5px solid rgb(221, 221, 221);
+    background-color: white;
+}
+
+.voucher img{
+    margin:0 2%;
+}
+
+.voucher p:last-child{
+    display: block;
+    margin-left: 2%;
+    padding:1.5% 0;
+    color: #05a;
+    cursor: pointer;
+}
+
+.payContainer{
+    width:100%;
+    border: 0.5px solid rgb(221, 221, 221);
+    box-shadow: rgba(0, 0, 0, 0.45) 0px -10px 20px -20px;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    bottom:0;
+    background-color: white;
+}
+
+.topPay{
+    display: flex;
+    width:100%;
+    border-bottom: 0.5px dashed rgb(221, 221, 221);
+    font-size: 150%;
+    padding: 1%;
+}
+
+.topPay div:first-of-type{
+    width:70%;
+    justify-content: end;
+    display: flex;
+    align-items: center;
+
+}
+
+.topPay div:last-of-type{
+    width:30%;
+    text-align: end;
+    margin-right: 2%;
+    color: #05a;
+}
+
+.middlePay{
+    width: 35%;
+    display: flex;
+}
+
+.middlePay p{
+    padding: 2%;
+    font-size: 150%;
+}
+
+.middlePay p:last-child{
+    color: red;
+    cursor: pointer;
+}
+
+.middlePay p:nth-last-of-type(2){
+    color: #05a;
+    cursor: pointer;
+}
+
+.bottomPay{
+    display: flex;
+    padding: 1%;
+    font-size: 170%;
+    width: 100%;
+    justify-content: right;
+    align-items: center;
+    border-top: 0.5px dashed rgb(221, 221, 221)  ;
+}
+
+.bottomPay p{
+    margin-right:2%;
+}
+
+.btnPay{
+    background-color: red !important;
+    width:15%;
+    font-size: 110% !important;
+}
+
+.bottomPay span{
+    font-size: 140%;
+    color: red;
+}
+
+.amount{
+    width:40%;
+    padding:0 1%;
+    text-align: center;
+    color: #1976d2;
+    border: 1px solid rgba(25, 118, 210, 0.5);
+    border-radius: 10%;
+}
