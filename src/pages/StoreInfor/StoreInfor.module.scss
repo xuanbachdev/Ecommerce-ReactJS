@@ -1,0 +1,64 @@
+.body {
+    padding: 0px 250px;
+    font-size: 25px;
+}
+.labelAddress{
+    color: red;
+    margin: 20px 0px;
+}
+.time {
+    span {
+        padding-left: 10px;
+    }
+    font-size: 15px;
+    margin: 10px;
+}
+.makeOrder {
+    p{
+        color: red;
+        margin: 20px 0px 0px 0px;
+    }
+    span {
+        margin-right: 10px;
+    }
+    a {
+        text-decoration: underline;
+        font-style: italic;
+        color: rgba($color: #76c0cc, $alpha: 1.0);
+    }
+}
+.address {
+    div:nth-child(1) {
+        color: red;
+        margin: 20px 0px
+    }
+    div:nth-child(2) {
+        margin: 10px;
+        font-size: 20px;
+        span{
+            margin-right: 10px;
+        }
+    }
+    div:nth-child(3) {
+        margin: 10px;
+        font-size: 20px;
+        span{
+            margin-right: 10px;
+        }
+    }
+}
+.MHD {
+    margin: 10px;
+}
+.THT {
+    margin: 10px;
+}
+.btn {
+    button {
+        background-color: rgb(103, 103, 146);
+        color:white;
+        border-radius: 2px;
+        padding: 5px;
+        margin: 5px
+    }
+}
