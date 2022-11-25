@@ -1,0 +1,150 @@
+.header {
+	font-size: 13px;
+}
+.header.fixed {
+	position: fixed;
+	top: -110px;
+	left: 0;
+	right: 0;
+	z-index: 999;
+	background-color: white;
+	animation: myfixed 0.6s both;
+	box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+	opacity: 0;
+}
+@keyframes myfixed {
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
+
+.subnav {
+	display: flex;
+	background: #f2f2f2;
+	padding: 5px 40px;
+	justify-content: space-between;
+
+	font-size: 14px;
+}
+.phone {
+	font-weight: 500;
+}
+
+.icon {
+	margin-right: 5px;
+	color: #999;
+	font-size: 13px;
+}
+
+.numb {
+	color: #252a2b;
+	font-weight: 700;
+}
+
+.info-user{
+    display: flex;
+    column-gap: 10px;
+    li {
+        padding: 0 8px;
+    }
+}
+
+.text {
+	color: #252a2b;
+	font-weight: 400;
+}
+
+.cart:hover {
+	cursor: pointer;
+}
+
+.quantity {
+	color: #f40000;
+}
+
+.nav-box {
+	display: flex;
+	padding: 3px 41px;
+	align-items: center;
+	justify-content: space-between;
+}
+.logo img {
+	width: 150px;
+	height: 44px;
+	margin-top: 7px;
+}
+//mobile
+.icon-menu {
+	display: none;
+}
+@media only screen and (max-width: 600px) {
+	.header {
+		position: fixed;
+		top: -110px;
+		left: 0;
+		right: 0;
+		z-index: 999;
+		background-color: white;
+		animation: myfixed 0.6s both;
+		box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+		opacity: 0;
+	}
+	.subnav{
+		padding: 5px 10px;
+	}
+	.nav-box {
+		padding: 10px 24px;
+	}
+	.text {
+		display: none;
+	}
+	.infos-footer {
+		flex-wrap: wrap;
+	}
+	.logo {
+		img {
+			width: 67px;
+            height: 30px;
+            object-fit: scale-down;
+			
+		}
+	}
+	
+	.icon {
+		font-size: 16px;
+	}
+	.pc-none {
+		display: none;
+	}
+	.icon-menu {
+		display: block;
+	}
+  }
+    @media only screen and (min-width:600px) and (max-width:1101px) {
+		.logo {
+			img {
+				width: 108px;
+    			height: 34px;
+			}
+		}
+	}
+	@media only screen and (min-width:601px) and (max-width:886px) {
+		.pc-none {
+			display: none;
+		}
+		.icon-menu {
+			display: block;
+		}
+		.nav-box {
+			padding: 10px 41px;
+		}
+	}
+	@media only screen and (min-width:887px) and (max-width:1101px) {
+		.nav-box {
+			padding: 3px 20px;
+		}
+		.subnav {
+			padding: 5px 20px;
+		}
+	}
