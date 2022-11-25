@@ -13,7 +13,7 @@ export const UpdateInfo = () => {
   const [sex, setSex] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('0929690966')
   const [avatar, setAvatar] = useState()
-  const [uploadAvatar, setUploadAvatar] = useState()
+  const [uploadAvatar, setUploadAvatar] = useState(null)
   const next = useNavigate()
   let avatarPath
   let inputName = useRef(null)
@@ -39,8 +39,8 @@ export const UpdateInfo = () => {
       // toast.error('Lỗi load data ^^')
     }
 }
+  getData()
   useEffect(() => {
-      getData()
     return () => {
       uploadAvatar && URL.revokeObjectURL(uploadAvatar.preview)
     }
