@@ -2,7 +2,7 @@ import {BrowserRouter ,Routes,Route} from 'react-router-dom'
 import {pagePrivate, pageRoutes} from '~/routes'
 
 import DefaultLayout from '~/Layout/DefaultLayout/DefaultLayout';
-import { PrivateRouter } from '~/page/PrivateRouter/privateRouter';
+import { PrivateRouter } from '~/pages/PrivateRouter/privateRouter';
 
 function App() {
   return (
