@@ -1,0 +1,48 @@
+.wrapper {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(22,24,35,0.03);
+    }
+}
+.sub-wrap {
+    display: flex;
+}
+.avatar {
+    width: 40px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.info {
+    margin-left: 12px;
+    width: 230px;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.price {
+    color: red;
+}
+//mobile
+@media only screen and (max-width: 600px) {
+	.wrapper {
+        padding: 0 8px 8px 8px;
+    }
+    .sub-nav {
+        align-items: center;
+        column-gap: 10px;
+    }
+    .name {
+        font-size: 14px;
+    }
+  }
