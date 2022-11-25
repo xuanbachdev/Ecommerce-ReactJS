@@ -19,7 +19,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Shop2Icon from '@mui/icons-material/Shop2';
 import Modal from '@mui/material/Modal';
 
-const cx = classNames.bind(styles) 
+const cx = classNames.bind(styles)
 
 function SelectProduct({info,dataThen,index,set}) {
     const [form,setForm]=useState({color:null,ram:null,rom:null,amount:null,imgP:info.imgP})
@@ -31,7 +31,7 @@ function SelectProduct({info,dataThen,index,set}) {
             data.amount=amount
             return data
         })
-    },[])
+    }, [])
     const handleIncrease=()=>{
         info.amount+=1
         setForm(()=>{
@@ -58,7 +58,7 @@ function SelectProduct({info,dataThen,index,set}) {
     const [src,setSrc]= useState(info.listDtail[0].listImg[0])
 
     const handleSrc = (index) =>{setSrc(data[index])}
-    
+
     const [dataColor,setDataColor]=useState(()=>{
         let prev=info.listDtail.map(value=> {
                 return {id:value.color,open:false}
@@ -81,16 +81,16 @@ function SelectProduct({info,dataThen,index,set}) {
         let data=array.map(v=>{return {id:v,open:false}})
     return data
     })
-  
+
     const Active=({info1,index})=>{
         const isActive=()=>{
             for (let i of dataColor){
-                if (i.id==info1)(i.open)?i.open=false:i.open=true
+                if (i.id===info1)(i.open)?i.open=false:i.open=true
                 else i.open=false
-            }   
+            }
             setDataColor([...dataColor])
             info.listDtail.map((value)=>{
-                if (value.color==info1) form.imgP=value.listImg[0]
+                if (value.color===info1) form.imgP=value.listImg[0]
             })
             setForm(()=>{
                 let data={...form}
@@ -111,9 +111,9 @@ function SelectProduct({info,dataThen,index,set}) {
     const Active2=({info1,index})=>{
         const isActive=()=>{
             for (let i of dataRam){
-                if (i.id==info1)(i.open)?i.open=false:i.open=true
+                if (i.id===info1)(i.open)?i.open=false:i.open=true
                 else i.open=false
-            }   
+            }
             setDataRam([...dataRam])
             setForm(()=>{
                 let data={...form}
@@ -134,9 +134,9 @@ function SelectProduct({info,dataThen,index,set}) {
     const Active3=({info1,index})=>{
         const isActive=()=>{
             for (let i of dataRom){
-                if (i.id==info1)(i.open)?i.open=false:i.open=true
+                if (i.id===info1)(i.open)?i.open=false:i.open=true
                 else i.open=false
-            }   
+            }
             setDataRom([...dataRom])
             setForm(()=>{
                 let data={...form}
@@ -185,7 +185,7 @@ function SelectProduct({info,dataThen,index,set}) {
     bgcolor: 'background.paper',
     border: '0.5px solid #000',
     boxShadow: 24,
-  } 
+  }
   const handleSubmit=(index) => {
     if (!form.color || !form.ram || !form.rom || !form.amount ) {
         setText('Mời chọn phân loại hàng')
@@ -194,18 +194,18 @@ function SelectProduct({info,dataThen,index,set}) {
     if (form.color && form.ram && form.rom && form.amount ) {
         let kt=false
             for(let i of info.listDtail)
-                if(i.color==form.color && i.ram==form.ram && i.rom==form.rom) {
+                if(i.color===form.color && i.ram===form.ram && i.rom===form.rom) {
                     kt=true
                     break
                 }
-            if (kt==false) {
+            if (kt===false) {
                       setText('Sản phẩm đã hết hàng')
                       setOpen(true)
              }
-            if (kt==true){
+            if (kt===true){
                 let newData=[...dataThen]
-                for (let i of newData) 
-                    if (i._id==info._id) {
+                for (let i of newData)
+                    if (i._id===info._id) {
                         i.color=form.color
                         i.ram=form.ram
                         i.rom=form.rom
@@ -295,7 +295,7 @@ function SelectProduct({info,dataThen,index,set}) {
                                 <p>Bảng quy đổi kích cỡ <ArrowDropDownIcon/></p>
                             </div>
                             <div className={cx('type-select')}>
-                                
+
                             <div className={cx('type')}><span  className={cx('type1')}>Color:</span>
                             {
                                 dataColor.map((value,index)=>{
@@ -304,7 +304,7 @@ function SelectProduct({info,dataThen,index,set}) {
                                     )
                                 })
                             }
-                            </div> 
+                            </div>
                             <div className={cx('type')}><span className={cx('type1')}>Ram:</span>
                             {
                                 dataRam.map((value,index)=>{
@@ -313,7 +313,7 @@ function SelectProduct({info,dataThen,index,set}) {
                                     )
                                 })
                             }
-                            </div> 
+                            </div>
                             <div className={cx('type')}><span  className={cx('type1')}>Rom:</span>
                             {
                                 dataRom.map((value,index)=>{
@@ -322,7 +322,7 @@ function SelectProduct({info,dataThen,index,set}) {
                                     )
                                 })
                             }
-                            </div> 
+                            </div>
                             </div>
                         </div>
                         <div className={cx('price-total')}>
@@ -384,7 +384,7 @@ function SelectProduct({info,dataThen,index,set}) {
 
   return (
     <div>
-      
+
         <React.Fragment key='bottom'>
           <Button style={{fontSize:'70%'}} onClick={toggleDrawer('bottom', true)}>
             Phân Loại Hàng
@@ -398,7 +398,7 @@ function SelectProduct({info,dataThen,index,set}) {
             {list('bottom')}
           </Drawer>
         </React.Fragment>
-     
+
     </div>
   );
 }
