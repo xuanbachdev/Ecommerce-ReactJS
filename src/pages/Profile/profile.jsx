@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
-import styles from '~/page/Profile/profile.module.scss'
+import styles from '~/pages/Profile/profile.module.scss'
 import { Link } from 'react-router-dom';
-import  {FavouriteProduct}  from '~/page/Profile/favourite_product';
+import  {FavouriteProduct}  from '~/pages/Profile/favourite_product';
 
 function Profile() {
     const cx = classNames.bind(styles)

@@ -1,4 +1,4 @@
-import styles from '~/page/Profile/profile.module.scss'
+import styles from '~/pages/Profile/profile.module.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { React } from 'react';
 import wishList from '~/reducer/favourite'

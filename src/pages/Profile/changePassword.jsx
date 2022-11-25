@@ -1,4 +1,4 @@
-import styles from '~/page/Profile/profile.module.scss'
+import styles from '~/pages/Profile/profile.module.scss'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from 'react-router-dom';
