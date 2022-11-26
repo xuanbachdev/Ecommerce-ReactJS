@@ -60,19 +60,23 @@ function RenderProduct() {
         let newData=[]
         console.log(checked);
         if (checked.length>0){
-            data.map( value => {
-                let kt=false
-                for (let j=0;j<checked.length;j++){
-                    if (value._id!==checked[j]){
-                        kt=true
-                        console.log(value,'=',checked[j]);
-                    }
-                    else {
-                        kt=false
-                        break
-                    }
-                }
-                if (kt) newData.push(value)
+            // data.map( value => {
+            //     let kt=false
+            //     for (let j=0;j<checked.length;j++){
+            //         if (value._id!==checked[j]){
+            //             kt=true
+            //             console.log(value,'=',checked[j]);
+            //         }
+            //         else {
+            //             kt=false
+            //             break
+            //         }
+            //     }
+            //     if (kt) newData.push(value)
+            // })
+
+            data.map(value => {
+                console.log(23);
             })
 
             localStorage.removeItem('myStore')
