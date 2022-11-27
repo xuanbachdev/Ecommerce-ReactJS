@@ -27,10 +27,7 @@ function Header() {
   const [fix,setFix] = useState(false)
   const [backToTop,setBackToTop] = useState(false)
   const [openModal,setOpenModal] = useState(false)
-
   const token = localStorage.getItem('Token')
-  
-
   const setFixed = useCallback(() => {
       if(window.scrollY > 100) {
         setBackToTop(true)
@@ -46,7 +43,7 @@ function Header() {
       /* eslint-disable react-hooks/exhaustive-deps */
     dispatch(counterTotalProduct())
   },[])
-  
+
   const removeToken = () => {
     localStorage.clear()
     dispatch(counterTotalProduct2(0))
@@ -99,12 +96,12 @@ function Header() {
 
           <div className={cx('icon-menu')} onClick={() => setOpenModal(true)}>
               <FontAwesomeIcon icon={faBars} />
-           </div> 
+           </div>
           <Modal open={openModal} onClose={() => setOpenModal(false)} mess='MENU'>
             <Nav onClose={() => setOpenModal(false)}/>
           </Modal>
          </div>
-     
+
       <BackToTopButton view={backToTop}/>
     </header>
 
