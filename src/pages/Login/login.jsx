@@ -4,19 +4,22 @@ import React, { useRef, useState, useEffect } from 'react'
 import classnames from 'classnames/bind';
 import styles from './login.module.scss';
 import { useNavigate } from 'react-router-dom';
-import {ToastContainer } from 'react-toastify';
+import {toast, ToastContainer } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { getUserInfo, userLogin } from '~/redux/reducer/authSlice';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { postAPI } from '~/config/api';
 
 const cx = classnames.bind(styles)
 
 function Login() {
-    const [booleanUser] = useState(false)
     const [count, setCount] = useState(true)
-    const [inpUserName, setInpUserName] = useState('')
+    const username = useRef()
     const email = useRef()
     const password = useRef()
+    const confirmPassword = useRef()
+    const inputEmail = useRef()
+    const inputPassword = useRef()
     const nav = useNavigate()
 
     const regexEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
@@ -28,6 +31,16 @@ function Login() {
     useEffect(() =>{
         window.scroll(0,0)
     },[])
+
+    const validateUsername = () =>{
+        if(username.current.value.trim() === ''){
+            msg.username = 'Vui lòng nhập username'
+        }
+        else if(username.current.value.length < 6){
+            msg.username = 'Username tối thiểu 6 ký tự'
+        }
+        setErrMess(msg)
+    }
 
     const validateEmail = () =>{
         if(email.current.value.trim() === ''){
@@ -50,11 +63,51 @@ function Login() {
 
     }
 
+    const validateEmailSignUp = () =>{
+        if(inputEmail.current.value.trim() === ''){
+            msg.inputEmail = 'Vui lòng nhập email'
+        }
+        else if(!regexEmail.test(inputEmail.current.value)){
+            msg.inputEmail = 'Email không đúng định dạng'
+        }
+        setErrMess(msg)
+    }
+
+    const validatePassSignUp = () =>{
+        if(inputPassword.current.value.trim() === ''){
+            msg.inputPassword = 'Vui lòng nhập mật khẩu'
+        }
+        else if(inputPassword.current.value.length < 6){
+            msg.inputPassword = 'Mật khẩu tối thiểu 6 ký tự'
+        }
+        setErrMess(msg)
+    }
+    const validateConfirmPass = () =>{
+        if(confirmPassword.current.value.trim() === ''){
+            msg.confirmPassword = 'Vui lòng nhập lại mật khẩu'
+        }
+        else if(confirmPassword.current.value.length < 6){
+            msg.confirmPassword = 'Mật khẩu tối thiểu 6 ký tự'
+        }
+        else if(confirmPassword.current.value !== inputPassword.current.value){
+            msg.confirmPassword = 'Mật khẩu không trùng khớp ^^ Vui lòng nhập lại'
+        }
+        setErrMess(msg)
+    }
     const validateAll = () =>{
-       validateEmail()
-       validatePass()
+        validateEmail()
+        validatePass()
        if(Object.keys(msg).length > 0) return false
        return true
+    }
+
+    const validateSignUp = () => {
+        validateUsername()
+        validateEmailSignUp()
+        validatePassSignUp()
+        validateConfirmPass()
+        if(Object.keys(msg).length > 0) return false
+        return true
     }
 
     const handleSignIn = async(e) =>{
@@ -65,12 +118,36 @@ function Login() {
         email: email.current.value,
         password: password.current.value
        }
-
         const response = await dispatch(userLogin(params))
         const token = unwrapResult(response)
         if(token){
             nav('/')
             dispatch(getUserInfo())
+        }
+    }
+
+    const handleSignUp = async (e) => {
+        e.preventDefault()
+        const isValid = validateSignUp()
+        const data = {
+            username: username.current.value,
+            email: inputEmail.current.value,
+            password: inputPassword.current.value
+        }
+        if(!isValid) return
+        try{
+          await postAPI('/auth/sign-up', data)
+          setCount(true)
+            alert('Đăng ký thành công! Bạn sẽ được chuyển về trang đăng nhập ngay bây giờ')
+
+        }
+        catch(err){
+            if(err.response.data.message === 'email is in used'){
+                toast.error('Email đã được sử dụng, vui lòng nhập email khác')
+            }
+            else{
+                toast.error('Đăng ký thất bại ^^');
+            }
         }
     }
 
@@ -117,42 +194,50 @@ function Login() {
                 </form>
 
                 <form
+                    onSubmit={handleSignUp}
                     style={{ display: (!count) ? "block" : "none" }}
                     className={cx('form-signup')}
                 >
                     <h1>SignUp</h1>
                     <input
                         className={cx('inp-SignUp')}
+                        ref={username}
                         id="userName"
-                        value={inpUserName}
-                        onChange={(e) => setInpUserName(e.target.value)}
-                        // onBlur={checkInpUser}
                         type="text"
-                        placeholder='Username'
+                        placeholder='Vui lòng nhập Username'
+                        onInput={validateUsername}
                     />
                     <br />
-                    <p className={cx((booleanUser) ? 'err-msg' : 'hidden')}>
-                        *sai định dạng !!
-                    </p>
+                    <p className={styles.warning} id='errorUsername'>{errMess.username}</p>
                     <input
                         className={cx('inp-SignUp')}
+                        ref={inputEmail}
                         id="email"
                         type="text"
-                        placeholder='Email'
+                        placeholder='Vui lòng nhập Email'
+                        onInput={validateEmailSignUp}
                     />
                     <br />
+                    <p className={styles.warning} id='errorEmail'>{errMess.inputEmail}</p>
                     <input
                         className={cx('inp-SignUp')}
+                        ref={inputPassword}
                         id="passWord"
                         type="password"
-                        placeholder='Password' /> <br />
+                        placeholder='Vui lòng nhập mật khẩu'
+                        onInput={validatePassSignUp}
+                        /> <br />
+                         <p className={styles.warning} id='errorPass'>{errMess.inputPassword}</p>
                     <input
                         className={cx('inp-SignUp')}
+                        ref={confirmPassword}
                         id="confirmPass"
                         type="password"
-                        placeholder='Confirm password'
+                        placeholder='Vui lòng nhập lại mật khẩu'
+                        onInput={validateConfirmPass}
                     />
                     <br />
+                    <p className={styles.warning} id='signUp'>{errMess.confirmPassword}</p>
                     <button className={cx('bnt-signup')}>
                         SignUp
                     </button>
