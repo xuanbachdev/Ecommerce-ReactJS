@@ -5,7 +5,7 @@ import classNames from "classnames/bind";
 
 
 import styles from "./category.module.scss"
-import axios from "~/axios";
+import axios from "~/config/axios";
 import HomeStore from "~/components/HomeStore/homeStore";
 import Product from "~/components/Product/product";
 import SlideShow from "~/components/SlideShow/slideauto"
@@ -20,7 +20,7 @@ function Category() {
     const [filter,setFilter] = useState(null)
     const [active,setActive] = useState(null)
     const [searchParam,setSearchParam] = useSearchParams()
-    
+
     useEffect(() => {
           axios.get(`/product/get-all-products`)
                .then (res => {
@@ -46,8 +46,8 @@ function Category() {
          setActive(index)
          setSearchParam({filters:name})
     }
-    return ( 
-       <> 
+    return (
+       <>
           <SlideShow/>
           <div className={cx("name-filter")}>
                {branchs.map((item,index) => {
