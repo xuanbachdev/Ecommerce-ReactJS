@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import {useState,useEffect} from 'react'
 
-import axios from "~/axios";
+import axios from "~/config/axios";
 import Product from "../Product/product";
 import styles from "./ContaierProduct.module.scss"
 import {memo} from "react"
