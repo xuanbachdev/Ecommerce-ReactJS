@@ -1,8 +1,7 @@
 import styles from '~/pages/Profile/profile.module.scss'
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { patchAPI } from '../../config/api';
+import { patchAPI } from '~/config/api';
 import { useRef } from 'react';
 
 export const ChangePassword = () => {
@@ -20,6 +19,12 @@ export const ChangePassword = () => {
       else if(!newPass.current.value){
         toast.error('Mật khẩu mới không được để trống')
       }
+      else if(newPass.current.value.length < 6){
+        toast.error('Mật khẩu tối thiểu 6 ký tự')
+      }
+      else if(oldPass.current.value === newPass.current.value){
+        toast.error('Để đảm bảo an toàn bạn vui lòng đặt mật khẩu khác với mật khẩu cũ ^^^')
+      }
       else if(!confirmPass.current.value){
         toast.error('Vui lòng nhập lại mật khẩu')
       }
@@ -30,16 +35,23 @@ export const ChangePassword = () => {
         await patchAPI('/user/change-password', {
           oldPass: oldPass.current.value,
           newPass: newPass.current.value
-        })
+        }
+        )
         window.localStorage.removeItem('Token')
         window.localStorage.removeItem('email')
-        toast.success('Đổi mật khẩu thành công ! Bạn sẽ được chuyển đến trang đăng nhập ngay bây giờ !')
         setTimeout(() => {
-        nav('/login')
+          toast.success(`Đổi mật khẩu thành công ! Bạn sẽ được chuyển đến trang đăng nhập ngay bây giờ`)
+          localStorage.clear()
+          nav('/login')
         }, 3000)
      }
     }catch(err){
-      toast.error('Đổi mật khẩu thất bại !')
+      if(err.response.data.message === 'wrong password'){
+        toast.error('Mật khẩu cũ không chính xác!! Vui lòng nhập lại ^^^')
+      }
+      else{
+        toast.error('Đổi mật khẩu thất bại')
+      }
     }
   }
   return (
