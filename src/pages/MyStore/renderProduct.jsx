@@ -1,9 +1,9 @@
 import React,{useEffect, useState} from 'react'
 import styles from './myStore.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import {counterTotalProduct,} from '~/reducer/totalProductSlice'
+import {counterTotalProduct,} from '~/redux/reducer/totalProductSlice'
 import Button from '@mui/material/Button';
-import {increase,decrease} from '~/reducer/amountSlice'
+import {increase,decrease} from '~/redux/reducer/amountSlice'
 import SelectProduct from '~/components/selectProduct/selectProduct';
 
 
