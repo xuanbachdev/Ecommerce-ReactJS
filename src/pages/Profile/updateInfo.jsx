@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from '~/pages/Profile/profile.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { getAPI, patchAPI } from '~/config/api';
 
 export const UpdateInfo = () => {
@@ -13,15 +12,14 @@ export const UpdateInfo = () => {
   const [sex, setSex] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('0929690966')
   const [avatar, setAvatar] = useState()
-  const [uploadAvatar, setUploadAvatar] = useState(null)
-  const next = useNavigate()
+  const [uploadAvatar, setUploadAvatar] = useState()
   let avatarPath
   let inputName = useRef(null)
   let userName = useRef(null)
   const gender = useRef()
   const getData = async () => {
     try{
-      let res = await getAPI('/auth/get-loged-in-user')
+      let res = await getAPI("/auth/get-loged-in-user")
       avatarPath = res.data.user.avatar
       if(!avatarPath){
         avatarPath = 'https://64.media.tumblr.com/970f8c9047f214078b5b023089059228/4860ecfa29757f0c-62/s640x960/9578d9dcf4eac298d85cf624bcf8b672a17e558c.jpg'
@@ -34,16 +32,18 @@ export const UpdateInfo = () => {
       setSex(res.data.user.sex)
       setdateOfBirth((res.data.user.dateOfBirth.split('T'))[0].split('-').join('-'))
       setPhoneNumber(res.data.user.phone)
+
     }catch(err){
       console.log(err);
-      // toast.error('Lỗi load data ^^')
+      toast.error('Lỗi load data ^^')
     }
 }
+useEffect(() => {
   getData()
-  useEffect(() => {
-    return () => {
+  return () => {
       uploadAvatar && URL.revokeObjectURL(uploadAvatar.preview)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[count, uploadAvatar])
 
   const handleUpdate = async () =>{
@@ -67,7 +67,7 @@ export const UpdateInfo = () => {
       {
           uploadAvatar &&
           await patchAPI('/user/change-avatar', uploadAvatar)
-        let res = await patchAPI('/user/update-info',
+        await patchAPI('/user/update-info',
         {
           username: userName.current.value,
           fullname: inputName.current.value,
@@ -78,13 +78,10 @@ export const UpdateInfo = () => {
         }
         )
         setCount(count + 1)
-        console.log(res);
-        toast.success('Cập nhập thông tin thành công')
-        next("/profile/update-info")
+        toast.success(`Cập nhập thông tin thành công`)
       }
 
     }catch(err){
-      console.log(err);
       toast.error('Thay đổi thất bại ^^')
     }
   }
@@ -101,9 +98,9 @@ export const UpdateInfo = () => {
 			<div className={styles.container}>
 				<h1 className='text-center'>Thay đổi thông tin cá nhân</h1>
         <div className={styles.upload_avatar}>
-          <input type="file" name='input-file' id='input-file' accept="image/png, image/jpg, image/jpeg" onChange={handlePreviewAvatar}/>
+          <input type="file" name='input-file' id='image_path' accept="image/png, image/jpg, image/jpeg" onChange={handlePreviewAvatar}/>
           <div className={styles.upload_avatar_preview}>
-            <img className={styles.avatar_preview} src={avatar} alt="Avatar" />
+            <img name='avatar' className={styles.avatar_preview} src={avatar} alt="Avatar" />
           </div>
         </div>
 				<form id={styles.formAcc}>
@@ -153,7 +150,7 @@ export const UpdateInfo = () => {
               <input
                 name='phone'
                 id='phoneNumber'
-                type='text'
+                type='number'
                 placeholder='Phone'
                 value={phoneNumber}
                 onChange={e=> setPhoneNumber(e.target.value)}
@@ -172,7 +169,7 @@ export const UpdateInfo = () => {
             </div>
             <ToastContainer
               position="top-right"
-              autoClose={500}
+              autoClose={1000}
               hideProgressBar={false}
               newestOnTop={false}
               closeOnClick
