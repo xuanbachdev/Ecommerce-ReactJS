@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { addProduct, deleteProduct } from "~/reducer/favourite";
+import { addProduct, deleteProduct } from "~/redux/reducer/favourite";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faEye, faHeart, faHeartCrack } from "@fortawesome/free-solid-svg-icons";
@@ -38,7 +38,7 @@ function Product({data,index}) {
         localStorage.setItem('check',JSON.stringify(arr))
         return arr
     })
-   
+
 
   }
 
@@ -70,12 +70,12 @@ function Product({data,index}) {
                 { !(JSON.parse(localStorage.getItem('check')) ?? []).includes(index ) ?
                     <p className={cx("link-product")} onClick={likeProduct}>
                         <FontAwesomeIcon className={cx("icon-action")} icon={faHeart}/>like
-                    </p>   
+                    </p>
                     :
                     <p className={cx("link-product")} onClick={removePro}>
                         <FontAwesomeIcon className={cx("icon-action")} icon={faHeartCrack}/>unlike
-                    </p>         
-                }  
+                    </p>
+                }
             </div>
         </div>
      )
