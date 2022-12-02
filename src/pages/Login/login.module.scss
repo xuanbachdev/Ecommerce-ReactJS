@@ -1,34 +1,32 @@
-.login{
+.login {
 	width: 100%;
 	height: 630px;
 	background-image: url('../../assets/images/onion\ \(2\).jpg');
 	background-size: 100%;
 	background-repeat: no-repeat;
-
 }
-.form-login{
-    width: 30%;
+.form-login {
+	width: 30%;
 	float: right;
-    border: 2px solid orange;
+	border: 2px solid orange;
 	margin-top: 50px;
 	margin-right: 70px;
-    border-radius: 8px;
-    text-align: center;
+	border-radius: 8px;
+	text-align: center;
 	height: 495px;
 	background: rgba(255, 255, 255, 0.5);
 }
-.form-login h1{
+.form-login h1 {
 	font-size: 55px;
 	color: transparent;
 	background-clip: text;
 	-webkit-background-clip: text;
-	background-image: linear-gradient( to right,  orange,  orangered);
-
+	background-image: linear-gradient(to right, orange, orangered);
 }
-.inp-login{
-    width: 75%;
-    height: 50px;
-    border: 1px solid #ccc;
+.inp-login {
+	width: 75%;
+	height: 50px;
+	border: 1px solid #ccc;
 	margin: 10px 0;
 	border: none;
 	border-bottom: 1px solid #333;
@@ -39,33 +37,32 @@
 		opacity: 0.7;
 	}
 }
-.save{
+.save {
 	float: right;
 }
 
-.bnt-login{
-    width: 75%;
-    height: 50px;
-    border: none;
-    border-radius: 20px;
-    background-image: linear-gradient( to right, orange  , orangered);
-    margin: 50px 0;
+.bnt-login {
+	width: 75%;
+	height: 50px;
+	border: none;
+	border-radius: 20px;
+	background-image: linear-gradient(to right, orange, orangered);
+	margin: 50px 0;
 	color: white;
 	cursor: pointer;
 }
 
-
-.change{
+.change {
 	color: transparent;
 	background-clip: text;
 	-webkit-background-clip: text;
-	background-image: linear-gradient( to right,  orange,  orangered);
+	background-image: linear-gradient(to right, orange, orangered);
 	position: relative;
 	cursor: pointer;
 }
-.change::before{
+.change::before {
 	content: '';
-    background-image: linear-gradient( to right, orange  , orangered);
+	background-image: linear-gradient(to right, orange, orangered);
 	width: 0;
 	border-radius: 20px;
 	height: 5px;
@@ -75,11 +72,17 @@
 	transform: translate(-50%);
 	transition: width 0.2s;
 }
-.change:hover::before{
+.change:hover::before {
 	width: 100%;
 }
 
-.form-signup{
+.warning {
+	font-size: 1.6rem;
+	color: #f00e0e;
+}
+
+// SìgnUp
+.form-signup {
 	width: 30%;
 	background-color: opacity($color: white);
 	border: 2px solid orange;
@@ -90,19 +93,17 @@
 	margin-top: 50px;
 	margin-right: 70px;
 	background: rgba(255, 255, 255, 0.5);
-
 }
-.form-signup h1{
+.form-signup h1 {
 	font-size: 55px;
 	color: transparent;
 	background-clip: text;
 	-webkit-background-clip: text;
-	background-image: linear-gradient( to right,  orange,  orangered);
-	
+	background-image: linear-gradient(to right, orange, orangered);
 }
-.inp-SignUp{
+.inp-SignUp {
 	width: 75%;
-    border: 1px solid #ccc;
+	border: 1px solid #ccc;
 	margin: 13px 0;
 	border: none;
 	border-bottom: 1px solid #333;
@@ -116,133 +117,129 @@
 	}
 }
 
-
-.bnt-signup{
+.bnt-signup {
 	width: 75%;
-    height: 50px;
-    border: none;
+	height: 50px;
+	border: none;
 	border-radius: 20px;
-    background-image: linear-gradient( to right, orange  , orangered);
-    margin-bottom: 10px;
+	background-image: linear-gradient(to right, orange, orangered);
+	margin-bottom: 10px;
 	color: white;
 	cursor: pointer;
 }
 
-
-
-.err-msg{
+.err-msg {
 	color: red;
 	text-align: right;
 	margin-right: 50px;
 	font-size: 15px;
 }
-.hidden{
+
+.hidden {
 	visibility: hidden;
 }
 
-
-@media only screen and (max-width: 600px ){
-	.login{
-		background-image:linear-gradient( 135deg, pink, violet );
+@media only screen and (max-width: 600px) {
+	.login {
+		background-image: linear-gradient(135deg, pink, violet);
 		height: 695px;
 	}
-	.form-signup{
+	.form-signup {
 		width: 90%;
 		margin-top: 31%;
-		margin-right:5%;
+		margin-right: 5%;
 	}
-	.form-login{
+	.form-login {
 		width: 90%;
 		margin-top: 120px;
-		margin-right:5%;
+		margin-right: 5%;
 	}
-	.inp-login{
+	.inp-login {
 		background-color: rgba(255, 255, 255, 0);
 	}
-	.inp-SignUp{
+	.inp-SignUp {
 		height: 30px;
 		background-color: rgba(255, 255, 255, 0);
 	}
 }
 
-
-@media only screen and (min-width:600px) and (max-width:1101px) {
-	.form-signup{
+@media only screen and (min-width: 600px) and (max-width: 1101px) {
+	.form-signup {
 		margin-top: 20%;
 		margin-right: 5%;
 		height: 480px;
 	}
-	.form-login{
+	.form-login {
 		margin-top: 20%;
 		margin-right: 5%;
 		height: 500px;
 	}
-	.saveUser{
+	.saveUser {
 		margin: 10px 0 15px 13%;
 	}
-	.bnt-login{
+	.bnt-login {
 		margin: 35px 1px;
 	}
 }
-@media only screen and (min-width:601px) and (max-width:886px) {
-	.login{
-		background-image:linear-gradient( 135deg, pink, violet );;
+@media only screen and (min-width: 601px) and (max-width: 886px) {
+	.login {
+		background-image: linear-gradient(135deg, pink, violet);
 	}
-	.form-signup{
+	.form-signup {
 		width: 90%;
 		margin-top: 10%;
-		margin-right:5%;
+		margin-right: 5%;
 	}
-	.form-login{
+	.form-login {
 		width: 90%;
 		margin: 10% 5% 0 0;
 	}
-	.inp-login{
+	.inp-login {
 		background-color: rgba(255, 255, 255, 0);
 	}
-	.inp-SignUp{
+	.inp-SignUp {
 		height: 30px;
 		background-color: rgba(255, 255, 255, 0);
 	}
 }
-@media only screen and (min-width:887px) and (max-width:1101px) {
-	.login{
-		background-image: url("../../assets/images/backroundWebOfB5.png");
+@media only screen and (min-width: 887px) and (max-width: 1101px) {
+	.login {
+		background-image: url('../../assets/images/backroundWebOfB5.png');
 		height: 450px;
 	}
-	.form-signup{
+	.form-signup {
 		height: 430px;
 		width: 45%;
 		float: none;
 		margin: auto;
 	}
-	.inp-SignUp{
+	.inp-SignUp {
 		background-color: rgba(255, 255, 255, 0.8);
 		&::-webkit-input-placeholder {
 			font-size: 15px;
 			opacity: 0.8;
 		}
 	}
-	.form-signup h1{
+	.form-signup h1 {
 		font-size: 35px;
 	}
-	.form-login{
+	.form-login {
 		height: 430px;
 		width: 45%;
 		float: none;
 		margin: auto;
 	}
-	.inp-login{
+	.inp-login {
 		background-color: rgba(255, 255, 255, 0.8);
 		&::-webkit-input-placeholder {
 			font-size: 15px;
 			opacity: 0.8;
 		}
 	}
-	.saveUser{
-		margin:0;
+	.saveUser {
+		margin: 0;
 	}
-	.bnt-login{
+	.bnt-login {
 		margin: 30px 0;
 	}
 }
