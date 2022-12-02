@@ -14,11 +14,11 @@ function Error404() {
     function isBack() {
         next("/")
     }
-    return ( 
+    return (
         <>
         <SlideShow />
         <div className ={cx("slide_404Err")}>
-            <h1 className={cx("Error-notification")}>Không Tìm Thấy Sản phẩm</h1>
+            <h1 className={cx("Error-notification")}>404 not found here ^^^</h1>
             <button onClick={isBack}>Come back home</button>
         </div>
         <HomeStore/>
