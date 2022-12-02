@@ -17,7 +17,7 @@ import axios from 'axios';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import HomeStore from "~/components/HomeStore/homeStore";
-import { counterTotalProduct, } from '~/reducer/totalProductSlice'
+import { counterTotalProduct, } from '~/redux/reducer/totalProductSlice'
 import { useDispatch } from "react-redux";
 import Alert from '~/components/Alert/alert';
 import { Link } from 'react-router-dom'
