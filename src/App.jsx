@@ -1,5 +1,5 @@
 import {BrowserRouter ,Routes,Route} from 'react-router-dom'
-import {pagePrivate, pageRoutes} from '~/routes'
+import {pagePrivate, pageRoutes, pageLogin} from '~/routes'
 
 import DefaultLayout from '~/Layout/DefaultLayout/DefaultLayout';
 import { PrivateRouter } from '~/pages/PrivateRouter/privateRouter';
