@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './header.module.scss'
 import BackToTopButton from '../../BackToTopButton/BackToTopButton';
-import { counterTotalProduct,counterTotalProduct2} from '~/reducer/totalProductSlice';
+import { counterTotalProduct,counterTotalProduct2} from '~/redux/reducer/totalProductSlice';
 import logo from '~/assets/images/b5.png'
 import Input from '~/Layout/DefaultLayout/Input/Input';
 import Nav from '../Nav/nav';
@@ -27,6 +27,7 @@ function Header() {
   const [fix,setFix] = useState(false)
   const [backToTop,setBackToTop] = useState(false)
   const [openModal,setOpenModal] = useState(false)
+  const user = JSON.parse(localStorage.getItem('User'))
   const token = localStorage.getItem('Token')
   const setFixed = useCallback(() => {
       if(window.scrollY > 100) {
@@ -45,10 +46,29 @@ function Header() {
   },[])
 
   const removeToken = () => {
-    localStorage.clear()
-    dispatch(counterTotalProduct2(0))
+      localStorage.clear()
+      dispatch(counterTotalProduct2(0))
+      alert('Đăng xuất thành công ^^^')
   }
 
+  const [uName, setUName] = useState("")
+  function nameUser() {
+    let dataUs = JSON.parse(window.localStorage.getItem("User"));
+    if (!dataUs) dataUs = {};
+
+    if (Object.keys(dataUs).length !== 0) {
+      let name = dataUs.email.split("@")
+      setUName(name[0])
+    }
+    else if (Object.keys(dataUs).length === 0) {
+      setUName('')
+    }
+  }
+  // CheckUser ()
+
+  useEffect(() => {
+    nameUser()
+  }, [uName])
   return (
     <header className={fix ? cx('header','fixed') : cx('header')}>
       <div className={cx('subnav')}>
@@ -60,14 +80,15 @@ function Header() {
           {token ? (
             <>
               <li>
+              <Link to={'/profile'} className={cx('text')}>
                 <FontAwesomeIcon className={cx('icon')} icon={faUser}/>
-                <Link to="/profile" className={cx('text')}>{localStorage.getItem('email') || "name"}</Link>
+              {uName}</Link>
               </li>
               <li>
                 <Link to="/login">
-                  <div onClick={removeToken}>
+                  <div>
                     <FontAwesomeIcon className={cx('icon')} icon={faRightFromBracket}/>
-                    <span className={cx('text')}>Đăng xuất</span>
+                    <span className={cx('text')} onClick={removeToken}>Đăng xuất</span>
                   </div>
                 </Link>
               </li>
