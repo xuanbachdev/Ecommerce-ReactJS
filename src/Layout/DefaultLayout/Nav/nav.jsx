@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 import classNames from "classnames/bind"
 
 import styles from "./nav.module.scss"
-import axios from "~/axios"
+import axios from "~/config/axios"
 
 const cx = classNames.bind(styles)
 function Nav({onClose}) {
@@ -16,9 +16,9 @@ function Nav({onClose}) {
             return item.categoryName
           })
           setData(categories)
-        }) 
+        })
       },[])
-    return ( 
+    return (
         <ul className={cx('nav')}>
             {data.map(category => {
               return (
