@@ -55,7 +55,7 @@
 	font-size: 14px;
 	margin-top: 10px;
 	font-weight: 400;
-	& p {
+	& li {
 		margin-bottom: 15px;
 		cursor: pointer;
 	}
@@ -64,7 +64,10 @@
 .favorite_product {
 	margin: 20px;
 	height: 300px;
-	overflow: auto;
+	& .wrapper {
+		height: 86%;
+		overflow: auto;
+	}
 }
 
 .favorite_product::-webkit-scrollbar {
@@ -112,9 +115,10 @@ label {
 	}
 }
 
-table {
+.content_wishlist {
 	font-size: 14px;
-	height: auto;
+	border-collapse: collapse;
+	margin-top: 20px;
 }
 
 .img_wishlist {
