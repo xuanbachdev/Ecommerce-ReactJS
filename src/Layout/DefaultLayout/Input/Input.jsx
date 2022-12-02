@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import { useEffect, useState,useRef } from 'react';
-import Wrapper  from '~/components/Popper/wrapper'; 
+import Wrapper  from '~/components/Popper/wrapper';
 import ProductResult from '../../../components/ProductResult/productResult';
-import axios from '~/axios';
+import axios from '~/config/axios';
 import useDebounce from "~/customHook/useDebounce"
 import { useNavigate } from 'react-router-dom';
  const cx = classNames.bind(styles)
@@ -33,7 +33,7 @@ function Input() {
         setLoad(false)
       })
       .catch(erro => console.log(erro))
-    
+
   },[debounce])
   useEffect(()=>{
     searchRef.current.addEventListener('keypress',(e) => {
@@ -47,7 +47,7 @@ function Input() {
    const searchValue = e.target.value
     if(!searchValue.startsWith(' ')) {
       setSearchValue(searchValue)
-    } 
+    }
   }
   const toSeaech = () => {
     if(searchResult.length > 0) {
@@ -56,7 +56,7 @@ function Input() {
       nav('/404')
     }
   }
-    return ( 
+    return (
        <div>
         <Tippy
           offset={[-30,10]}
@@ -73,14 +73,14 @@ function Input() {
                 })}
               </Wrapper>
             </div>
-          )} 
-          onClickOutside={() => setCheck(false)} 
+          )}
+          onClickOutside={() => setCheck(false)}
        >
         <div className={cx('search')} ref={searchRef}>
-          <input 
+          <input
             ref={inputRef}
-            placeholder='Tìm Kiếm' 
-            spellCheck={false} 
+            placeholder='Tìm Kiếm'
+            spellCheck={false}
             value={searchValue}
             onChange={handleChange}
             onFocus = {() => {
@@ -102,7 +102,7 @@ function Input() {
          { load &&  <FontAwesomeIcon className={cx("loading")} icon={faSpinner}/>}
           <button className={cx("search-btn")} onMouseDown={(e)=>e.preventDefault()} onClick={toSeaech}>
             <FontAwesomeIcon icon={faSearch}/>
-          </button>  
+          </button>
          </div>
        </Tippy>
        </div>
