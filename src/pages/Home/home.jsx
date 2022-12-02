@@ -1,5 +1,5 @@
 import {useState,useEffect} from "react"
-import axios from "~/axios";
+import axios from "~/config/axios";
 import ContaierProduct from "~/components/ContaierProduct/ContaierProduct";
 import classNames from "classnames/bind";
 import styles from "./home.module.scss"
@@ -14,11 +14,11 @@ function Home() {
   useEffect(() => {
     axios.get('/category/get-all-categories')
       .then (res => {
-        const data = res.data.categories  
+        const data = res.data.categories
         setCategoryObj(data)
-      }) 
+      })
   },[])
-    return  ( 
+    return  (
         <>
           <div>
             <div className={cx("slider")}></div>
