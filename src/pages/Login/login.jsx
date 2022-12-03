@@ -110,19 +110,20 @@ function Login() {
         return true
     }
 
-    const handleSignIn = async(e) =>{
+    const handleSignIn = async (e) =>{
         e.preventDefault()
+        const params = {
+            email: email.current.value,
+            password: password.current.value
+           }
        const isValid = validateAll()
        if(!isValid) return
-       const params = {
-        email: email.current.value,
-        password: password.current.value
-       }
         const response = await dispatch(userLogin(params))
         const token = unwrapResult(response)
         if(token){
             nav('/')
             dispatch(getUserInfo())
+            localStorage.setItem('email', email.current.value)
         }
     }
 

@@ -8,7 +8,7 @@ import Tippy from '@tippyjs/react/headless';
 import { useEffect, useState,useRef } from 'react';
 import Wrapper  from '~/components/Popper/wrapper';
 import ProductResult from '../../../components/ProductResult/productResult';
-import axios from '~/config/axios';
+import axios from '~/axios';
 import useDebounce from "~/customHook/useDebounce"
 import { useNavigate } from 'react-router-dom';
  const cx = classNames.bind(styles)
@@ -42,6 +42,7 @@ function Input() {
         setCheck(false)
       }
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[searchResult])
   const handleChange =(e) => {
    const searchValue = e.target.value

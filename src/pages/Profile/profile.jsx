@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import styles from '~/pages/Profile/profile.module.scss'
 import { Link, useNavigate } from 'react-router-dom';
 import  {FavouriteProduct}  from '~/pages/Profile/favourite_product';
+import { useEffect } from 'react';
 
 function Profile() {
     const cx = classNames.bind(styles)
@@ -10,6 +11,9 @@ function Profile() {
         nav('/profile/update-info')
     }
     let dataUser = JSON.parse(localStorage.getItem('User'))
+    useEffect(() =>{
+        window.scroll(0,0)
+    },[])
     return (
         <div className={cx('wrapper')}>
             <h3 className={cx('text-user')}>Tài khoản của {dataUser.username}</h3>

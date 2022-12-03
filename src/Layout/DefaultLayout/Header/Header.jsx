@@ -18,7 +18,6 @@ import logo from '~/assets/images/b5.png'
 import Input from '~/Layout/DefaultLayout/Input/Input';
 import Nav from '../Nav/nav';
 import Modal from '~/components/Modal/modal';
-
 const cx = classNames.bind(styles)
 
 function Header() {
@@ -27,8 +26,8 @@ function Header() {
   const [fix,setFix] = useState(false)
   const [backToTop,setBackToTop] = useState(false)
   const [openModal,setOpenModal] = useState(false)
-  const user = JSON.parse(localStorage.getItem('User'))
-  const token = localStorage.getItem('Token')
+  const token = JSON.parse(localStorage.getItem('Token'))
+  let dataUser = JSON.parse(localStorage.getItem("User"));
   const setFixed = useCallback(() => {
       if(window.scrollY > 100) {
         setBackToTop(true)
@@ -40,7 +39,7 @@ function Header() {
   },[])
 
   useEffect(() => {
-        window.addEventListener('scroll',setFixed)
+    window.addEventListener('scroll',setFixed)
       /* eslint-disable react-hooks/exhaustive-deps */
     dispatch(counterTotalProduct())
   },[])
@@ -51,24 +50,6 @@ function Header() {
       alert('Đăng xuất thành công ^^^')
   }
 
-  const [uName, setUName] = useState("")
-  function nameUser() {
-    let dataUs = JSON.parse(window.localStorage.getItem("User"));
-    if (!dataUs) dataUs = {};
-
-    if (Object.keys(dataUs).length !== 0) {
-      let name = dataUs.email.split("@")
-      setUName(name[0])
-    }
-    else if (Object.keys(dataUs).length === 0) {
-      setUName('')
-    }
-  }
-  // CheckUser ()
-
-  useEffect(() => {
-    nameUser()
-  }, [uName])
   return (
     <header className={fix ? cx('header','fixed') : cx('header')}>
       <div className={cx('subnav')}>
@@ -82,7 +63,7 @@ function Header() {
               <li>
               <Link to={'/profile'} className={cx('text')}>
                 <FontAwesomeIcon className={cx('icon')} icon={faUser}/>
-              {uName}</Link>
+              {dataUser?.username}</Link>
               </li>
               <li>
                 <Link to="/login">

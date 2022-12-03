@@ -34,8 +34,7 @@ export const UpdateInfo = () => {
       setPhoneNumber(res.data.user.phone)
 
     }catch(err){
-      console.log(err);
-      toast.error('Lỗi load data ^^')
+      toast.error(err.response.data.message)
     }
 }
 useEffect(() => {
@@ -65,7 +64,7 @@ useEffect(() => {
       }
       else
       {
-          uploadAvatar &&
+        uploadAvatar &&
           await patchAPI('/user/change-avatar', uploadAvatar)
         await patchAPI('/user/update-info',
         {
@@ -122,7 +121,7 @@ useEffect(() => {
                 id='name'
                 type='text'
                 placeholder='Họ tên'
-               defaultValue={data.fullname}
+               defaultValue={data?.fullname}
               />
             </div>
             <div className={styles.formcontrol}>

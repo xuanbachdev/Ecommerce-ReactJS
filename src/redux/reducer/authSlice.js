@@ -37,11 +37,11 @@ const authSlice = createSlice({
       builder
           .addCase(userLogin.fulfilled, (state, action) => {
               state.token = action.payload
-              window.localStorage.setItem('Token', JSON.stringify(state.token))
+              localStorage.setItem('Token', JSON.stringify(state.token))
           })
           .addCase(getUserInfo.fulfilled, (state, action) => {
               state.userInfo = action.payload
-              window.localStorage.setItem('User', JSON.stringify(state.userInfo))
+              localStorage.setItem('User', JSON.stringify(state.userInfo))
           })
   )
 });
