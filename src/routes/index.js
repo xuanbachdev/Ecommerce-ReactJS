@@ -10,6 +10,7 @@ import Profile from '~/pages/Profile/profile';
 import  {UpdateInfo}  from '~/pages/Profile/updateInfo';
 import  {ChangePassword}  from '~/pages/Profile/changePassword';
 import  {FavouriteProduct}  from '~/pages/Profile/favourite_product';
+import { Checkout } from '~/pages/Checkout/checkout';
 
 const pageRoutes = [
     {path:'/',component: Home},
@@ -19,6 +20,7 @@ const pageRoutes = [
     {path: "/storeInfor",component: StoreInfor},
     {path: "/search",component: Search},
     {path: "/myStore",component: MyStore},
+    {path: '/checkout', component: Checkout},
     {path: "*",component: Error404},
 ]
 
