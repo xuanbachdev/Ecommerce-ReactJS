@@ -180,8 +180,8 @@ function Login() {
                         />
                         <br />
                     <p className={styles.warning} id='msg'>{errMess.password}</p>
-                    <div style={{ textAlign: 'right', marginRight: "50px" }}>
-                        <input className={cx("saveUser")} type="checkbox" /> Renember me
+                    <div className={cx('remember')}>
+                        <input className={cx("saveUser")} type="checkbox" /> Remember me
                         <p>For got your password?</p>
 
                     </div>
