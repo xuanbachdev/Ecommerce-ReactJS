@@ -276,7 +276,7 @@ function Person() {
                         {secondListDtail.map((value, index) => {
                             return (
                                 <div key={index} hidden={disable}>
-                                    <p>Giá: <span>{value.price}</span></p>
+                                    <p>Giá: <span>{value.price?.toLocaleString('en-US', {style : 'currency', currency : 'VND'})}</span></p>
                                     <p>Ram: <span>{value.ram}</span></p>
                                     <p>Rom: <span>{value.rom}</span></p>
                                     <p>Trạng thái: <span>{value.status}</span></p>
