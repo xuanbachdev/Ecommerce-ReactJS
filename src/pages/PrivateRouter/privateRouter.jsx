@@ -6,6 +6,6 @@ export  const PrivateRouter = (props) => {
     return props.children
   }
   else{
-    <Navigate to={'/login'}></Navigate>
+    return <Navigate to={'/login'}></Navigate>
   }
 }
