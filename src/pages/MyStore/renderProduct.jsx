@@ -6,6 +6,7 @@ import {counterTotalProduct,} from '~/reducer/totalProductSlice'
 import Button from '@mui/material/Button';
 import {increase,decrease} from '~/reducer/amountSlice'
 import SelectProduct from '~/components/selectProduct/selectProduct';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -18,6 +19,7 @@ function RenderProduct() {
     const totalProduct=useSelector(state=> state.counterProduct)
     const [totalPrice,setTotalPrice]=useState(0)
     const [checked,setChecked]= useState([])
+    const nav = useNavigate()
     const handleCheck=(id)=>{
         setChecked(prev=>{
         const isCheck=checked?.includes(id)
@@ -226,7 +228,7 @@ function RenderProduct() {
                             <div className={styles.bottomPay}>
                                 <p>Tổng thanh toán ( {checked?.length} sản phẩm):  <span>{totalPrice?.toLocaleString('en-US', {style : 'currency', currency : 'VND'})}</span></p>
                                 <Button className={styles.btnPay} variant="contained" disableElevation>
-                                    Mua Hàng
+                                    <p onClick={() => nav('/checkout')}>Mua Hàng</p>
                                 </Button>
                             </div>
         </div>
