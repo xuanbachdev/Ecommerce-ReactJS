@@ -123,7 +123,7 @@ function Login() {
         if(token){
             nav('/')
             dispatch(getUserInfo())
-            localStorage.setItem('email', email.current.value.split('@')[0])
+            localStorage.setItem('username', email.current.value.split('@')[0])
         }
     }
 
