@@ -18,7 +18,6 @@ function RenderProduct() {
     const totalProduct=useSelector(state=> state.counterProduct)
     const [totalPrice,setTotalPrice]=useState(0)
     const [checked,setChecked]= useState([])
-    console.log(user);
     const handleCheck=(id)=>{
         setChecked(prev=>{
         const isCheck=checked?.includes(id)
@@ -149,6 +148,7 @@ function RenderProduct() {
             <div className={styles.navTitle}>Thao Tác</div>
         </div>
         { data.map((value,index)=> {
+            console.log(value)
             return(
                 <div className={ styles.childProductContainer} key={index}>
                     <div className={styles.childProductContainerDeal}>
@@ -165,7 +165,7 @@ function RenderProduct() {
                                 checked={checked?.includes(value._id)||checkTotal}
                                 onChange={()=>handleCheck(value._id)}
                                 />
-                                <img  width='80px' height='80px' src={"https://shope-b3.thaihm.site/" + value.imgP} alt="" />
+                                <img  width='80px' height='80px' src={process.env.REACT_APP_BASE_URL + value.thumbnail} alt="" />
                                 <div className={styles.infoProduct}>
                                     <p>{value.productName}</p>
                                     <img src="" alt="" />
