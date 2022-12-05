@@ -5,8 +5,7 @@ export const getAPI = function(url){
     return axios.get(url, {headers: {Authorization: token} })
 }
 export const postAPI = function(url, data){
-    let token = JSON.parse(localStorage.getItem('Token'))
-    return axios.post(url,data, {headers: {Authorization: token}})
+    return axios.post(url,data)
 }
 export const patchAPI = function(url, data){
     let token = JSON.parse(localStorage.getItem('Token'))
