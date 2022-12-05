@@ -110,14 +110,14 @@ function Login() {
         return true
     }
 
-    const handleSignIn = async (e) =>{
-        e.preventDefault()
-        const params = {
-            email: email.current.value,
-            password: password.current.value
-           }
+    const handleSignIn = async () => {
+        // e.preventDefault()
        const isValid = validateAll()
        if(!isValid) return
+       const params = {
+        email: email.current.value,
+        password: password.current.value
+       }
         const response = await dispatch(userLogin(params))
         const token = unwrapResult(response)
         if(token){
@@ -125,7 +125,7 @@ function Login() {
             dispatch(getUserInfo())
             localStorage.setItem('username', email.current.value.split('@')[0])
         }
-    }
+    };
 
     const handleSignUp = async (e) => {
         e.preventDefault()
@@ -158,7 +158,7 @@ function Login() {
                 <form
                     style={{ display: (count) ? "block" : "none" }}
                     className={cx('form-login')}
-                    onSubmit={handleSignIn}
+                    // onSubmit={handleSignIn}
                 >
                     <h1>Login</h1>
                     <input
@@ -186,7 +186,7 @@ function Login() {
 
                     </div>
 
-                    <button className={cx('bnt-login')} >Login</button>
+                    <button type='button' onClick={handleSignIn} className={cx('bnt-login')} >Login</button>
                     <h2>
                         or <span className={cx('change')} onClick={() => setCount(false)}>
                             SignUp
