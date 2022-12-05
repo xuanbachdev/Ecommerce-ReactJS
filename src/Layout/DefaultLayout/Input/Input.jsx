@@ -8,7 +8,7 @@ import Tippy from '@tippyjs/react/headless';
 import { useEffect, useState,useRef } from 'react';
 import Wrapper  from '~/components/Popper/wrapper';
 import ProductResult from '../../../components/ProductResult/productResult';
-import axios from '~/axios';
+import axios from '~/config/axios';
 import useDebounce from "~/customHook/useDebounce"
 import { useNavigate } from 'react-router-dom';
  const cx = classNames.bind(styles)
