@@ -5,42 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-
-@layer components {
-  .Btn {
-      @apply w-8 h-8 cursor-pointer flex justify-center items-center rounded-full bg-slate-500 hover:text-red-500;
-  }
-}
-@import 'antd/dist/antd.css';
-
-a {
-  color: black;
-}
-.cardhover:hover {
-  border-left: 1px solid orange;
-  border-right: 1px solid orange;
-  border-top: 1px solid orange;
-}
-.cardhover:hover > div:last-child{
-  opacity: 1;
-  transition: 1.5s;
-
-}
-.cardhover:hover img {
-  transform: scale(0.9);
-  transition: 0.5s;
-}
-ul li:not(:first-child) {
-  display: none;
-}
-
-.hoverButonAddCart:hover .notificationChoose {
-  display: block;
 }
