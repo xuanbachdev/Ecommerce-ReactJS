@@ -28,6 +28,9 @@ export const getUserInfo = createAsyncThunk('userInfo', async()=>{
   return res.data.user
 })
 
+export const loginCart = createAsyncThunk('loginCart', async() => {
+
+})
 const authSlice = createSlice({
   name: 'userAuth',
   initialState,
