@@ -3,13 +3,13 @@ import { NavLink } from "react-router-dom"
 import classNames from "classnames/bind"
 
 import styles from "./nav.module.scss"
-import axios from "~/config/axios"
+import { getAPI } from '~/config/api';
 
 const cx = classNames.bind(styles)
 function Nav({onClose}) {
     const [data,setData] = useState([])
     useEffect(() => {
-        axios.get('/category/get-all-categories')
+        getAPI('/category/get-all-categories')
         .then (res => {
             const categorieArray = res.data.categories
             const categories = categorieArray.map(item =>{
