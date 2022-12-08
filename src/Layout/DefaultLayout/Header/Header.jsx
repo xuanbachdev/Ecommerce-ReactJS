@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import styles from './header.module.scss'
 import BackToTopButton from '../../BackToTopButton/BackToTopButton';
 import { counterTotalProduct,counterTotalProduct2} from '~/redux/reducer/totalProductSlice';
-import logo from '~/assets/images/b5.png'
+import logo from '~/assets/images/logo.jpg'
 import Input from '~/Layout/DefaultLayout/Input/Input';
 import Nav from '../Nav/nav';
 import Modal from '~/components/Modal/modal';
