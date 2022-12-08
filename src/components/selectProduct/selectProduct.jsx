@@ -260,14 +260,14 @@ function SelectProduct({info,dataThen,index,set}) {
             <div className={cx('select-container')}>
                 <div className={cx('left')}>
                     <div className={cx('img-main')}>
-                        <img style={{height:'80%',marginTop:'10%'}} src={"https://shope-b3.thaihm.site/" +src} alt="" />
+                        <img style={{height:'80%',marginTop:'10%'}} src={process.env.REACT_APP_BASE_URL +src} alt="" />
                     </div>
                     <div className={cx('imgs')}>
                         {
                             data.map((value,index)=>{
                                 return(
                                     <div key={index} onMouseOver={()=>handleSrc(index)} className={cx('imgs-child')}>
-                                        <img style={{height:'100%'}} src={"https://shope-b3.thaihm.site/" + value} alt="" />
+                                        <img style={{height:'100%'}} src={process.env.REACT_APP_BASE_URL + value} alt="" />
                                     </div>
                                 )
                             })
