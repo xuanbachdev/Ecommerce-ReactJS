@@ -4,7 +4,8 @@ import { toast} from 'react-toastify';
 
 const initialState = {
   token: '',
-  userInfo: []
+  userInfo: [],
+  listCart: []
 }
 
 export const userLogin = createAsyncThunk('authLogin', async(users)=>{
@@ -29,7 +30,8 @@ export const getUserInfo = createAsyncThunk('userInfo', async()=>{
 })
 
 export const loginCart = createAsyncThunk('loginCart', async() => {
-
+  const res = await getAPI('/cart/get-loged-in-cart')
+  return res.data.cart.listProduct
 })
 const authSlice = createSlice({
   name: 'userAuth',
@@ -45,6 +47,10 @@ const authSlice = createSlice({
           .addCase(getUserInfo.fulfilled, (state, action) => {
               state.userInfo = action.payload
               localStorage.setItem('User', JSON.stringify(state.userInfo))
+          })
+          .addCase(loginCart.fulfilled, (state, action) => {
+            state.listCart = action.payload
+            localStorage.setItem('list_cart', JSON.stringify(state.listCart))
           })
   )
 });

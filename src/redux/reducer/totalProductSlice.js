@@ -4,10 +4,10 @@ export const totalProductSlice=createSlice({
     initialState:0,
     reducers:{
         counterTotalProduct:(state)=>{
-            let user=localStorage.getItem('email')
-            if (localStorage.getItem(user)){
-                let Storage=JSON.parse(localStorage.getItem(user))
-                return state=Storage.length
+            const data = localStorage.getItem('orderData')
+            if (data){
+                let storage = JSON.parse(localStorage.getItem('orderData'))
+                return state=storage.length
             }
             else return 0
         },
