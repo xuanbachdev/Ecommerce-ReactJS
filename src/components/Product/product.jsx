@@ -52,7 +52,7 @@ function Product({data,index}) {
                     <LazyLoadImage
                         effect="blur"
                         className={cx("image")}
-                        src={"https://shope-b3.thaihm.site/" + data.thumbnail}
+                        src={process.env.REACT_APP_BASE_URL + data.thumbnail}
                         alt={data._id}
                     />
                 </Link>
@@ -60,8 +60,8 @@ function Product({data,index}) {
             <div className={cx("info")}>
                 <p className={cx("name")}>{data.productName}</p>
                 <p className={cx("price")}>
-                    {data.price ? data.price.toLocaleString('en-US', {style:'currency',currency:'VND'})
-                    :Number(21000000).toLocaleString('en-US', {style:'currency',currency:'VND'})}
+                    {data.price?.toLocaleString('vi-VN', {style:'currency',currency:'VND'})}
+                    {/* :Number(21000000).toLocaleString('en-US', {style:'currency',currency:'VND'})} */}
                 </p>
             </div>
             <div className={cx('action')}>
