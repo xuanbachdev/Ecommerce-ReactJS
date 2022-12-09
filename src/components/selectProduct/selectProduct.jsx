@@ -25,6 +25,7 @@ const cx = classNames.bind(styles)
 function SelectProduct({info,dataThen,index,set}) {
     const [form,setForm]=useState({color:null,ram:null,rom:null,amount:null,imgP:info.imgP})
     const [amount,setAmount]=useState(info.amount)
+
     useEffect(()=>{
         setAmount(info.amount)
         setForm(()=>{
@@ -40,6 +41,7 @@ function SelectProduct({info,dataThen,index,set}) {
             let data={...form}
             data.amount=info.amount
             document.getElementById('input').value=info.amount
+            // window.localStorage.setItem('orderData', JSON.stringify(data))
             return data
         })
     }
@@ -50,6 +52,7 @@ function SelectProduct({info,dataThen,index,set}) {
             let data={...form}
             data.amount=info.amount
             document.getElementById('input').value=info.amount
+            // window.localStorage.setItem('orderData', JSON.stringify(data))
             return data
         })
     }
