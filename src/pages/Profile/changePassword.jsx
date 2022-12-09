@@ -39,8 +39,8 @@ export const ChangePassword = () => {
         )
         window.localStorage.removeItem('Token')
         window.localStorage.removeItem('email')
+        toast.success(`Đổi mật khẩu thành công ! Bạn sẽ được chuyển đến trang đăng nhập ngay bây giờ`)
         setTimeout(() => {
-          toast.success(`Đổi mật khẩu thành công ! Bạn sẽ được chuyển đến trang đăng nhập ngay bây giờ`)
           localStorage.clear()
           nav('/login')
         }, 3000)
@@ -94,8 +94,8 @@ export const ChangePassword = () => {
             <Link to={'/profile'}></Link>
               <ToastContainer
                 position="top-right"
-                autoClose={500}
-                hideProgressBar={true}
+                autoClose={1000}
+                hideProgressBar={false}
                 newestOnTop={true}
                 closeOnClick
                 rtl={false}
@@ -104,7 +104,6 @@ export const ChangePassword = () => {
                 pauseOnHover
                 theme="light"
                 />
-              <ToastContainer />
 				</form>
 			</div>
 		</div>

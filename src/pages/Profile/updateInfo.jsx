@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import { useState, useEffect, useRef } from 'react';
 import styles from '~/pages/Profile/profile.module.scss';
 import { Link } from 'react-router-dom';
@@ -5,7 +6,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import { getAPI, patchAPI } from '~/config/api';
 
 export const UpdateInfo = () => {
-  const rgxPhoneNumber = /^[0-9]{9,10}$/;
   const [data, setData] = useState({})
   const [count, setCount] = useState(0)
   const [dateOfBirth, setdateOfBirth] = useState('1999-04-23')
@@ -17,6 +17,7 @@ export const UpdateInfo = () => {
   let inputName = useRef(null)
   let userName = useRef(null)
   const gender = useRef()
+  const rgxPhoneNumber = /^[0-9\-\+]{9,10}$/;
   const getData = async () => {
     try{
       let res = await getAPI("/auth/get-loged-in-user")
