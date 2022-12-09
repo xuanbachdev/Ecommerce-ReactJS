@@ -20,11 +20,11 @@ const pageRoutes = [
     {path: "/storeInfor",component: StoreInfor},
     {path: "/search",component: Search},
     {path: "/myStore",component: MyStore},
-    {path: '/checkout', component: Checkout},
     {path: "*",component: Error404},
 ]
 
 const pagePrivate = [
+    {path: '/checkout', component: Checkout},
     {path: "/profile",component: Profile},
     {path: "/profile/update-info",component: UpdateInfo},
     {path: "/profile/change-pass",component: ChangePassword},
