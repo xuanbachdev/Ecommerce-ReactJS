@@ -6,7 +6,7 @@ import styles from './login.module.scss';
 import { useNavigate } from 'react-router-dom';
 import {toast, ToastContainer } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import { getUserInfo, userLogin } from '~/redux/reducer/authSlice';
+import { getUserInfo, loginCart, userLogin } from '~/redux/reducer/authSlice';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { postAPI } from '~/config/api';
 
@@ -47,7 +47,7 @@ function Login() {
             msg.email = 'Vui lòng nhập email'
         }
         else if(!regexEmail.test(email.current.value)){
-            msg.email = 'Email không đúng định dạng'
+            msg.email = 'Email không hợp lệ'
         }
         setErrMess(msg)
     }
@@ -68,7 +68,7 @@ function Login() {
             msg.inputEmail = 'Vui lòng nhập email'
         }
         else if(!regexEmail.test(inputEmail.current.value)){
-            msg.inputEmail = 'Email không đúng định dạng'
+            msg.inputEmail = 'Email không hợp lệ'
         }
         setErrMess(msg)
     }
@@ -110,8 +110,8 @@ function Login() {
         return true
     }
 
-    const handleSignIn = async () => {
-        // e.preventDefault()
+    const handleSignIn = async (e) => {
+        e.preventDefault()
        const isValid = validateAll()
        if(!isValid) return
        const params = {
@@ -123,7 +123,8 @@ function Login() {
         if(token){
             nav('/')
             dispatch(getUserInfo())
-            localStorage.setItem('username', email.current.value.split('@')[0])
+            dispatch(loginCart())
+            localStorage.setItem('email', email.current.value)
         }
     };
 
@@ -158,7 +159,7 @@ function Login() {
                 <form
                     style={{ display: (count) ? "block" : "none" }}
                     className={cx('form-login')}
-                    // onSubmit={handleSignIn}
+                    onSubmit={handleSignIn}
                 >
                     <h1>Login</h1>
                     <input
@@ -186,7 +187,7 @@ function Login() {
 
                     </div>
 
-                    <button type='button' onClick={handleSignIn} className={cx('bnt-login')} >Login</button>
+                    <button className={cx('bnt-login')} >Login</button>
                     <h2>
                         or <span className={cx('change')} onClick={() => setCount(false)}>
                             SignUp
@@ -213,7 +214,7 @@ function Login() {
                     <input
                         className={cx('inp-SignUp')}
                         ref={inputEmail}
-                        id="email"
+                        id="emailSignUp"
                         type="text"
                         placeholder='Vui lòng nhập Email'
                         onInput={validateEmailSignUp}
@@ -223,7 +224,7 @@ function Login() {
                     <input
                         className={cx('inp-SignUp')}
                         ref={inputPassword}
-                        id="passWord"
+                        id="passWordSignUp"
                         type="password"
                         placeholder='Vui lòng nhập mật khẩu'
                         onInput={validatePassSignUp}
