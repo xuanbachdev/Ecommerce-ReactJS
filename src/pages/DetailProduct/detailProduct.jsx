@@ -13,16 +13,16 @@ import {
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from 'axios';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import HomeStore from "~/components/HomeStore/homeStore";
-import { counterTotalProduct, } from '~/reducer/totalProductSlice'
+import { counterTotalProduct, } from '~/redux/reducer/totalProductSlice'
 import { useDispatch } from "react-redux";
 import Alert from '~/components/Alert/alert';
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import Modal from "~/components/Modal/modal";
+import { getAPI } from '~/config/api';
 
 const cx = classNames.bind(styles)
 var clone = [{
@@ -39,7 +39,6 @@ function Person() {
     }
 
     const disPatch = useDispatch()
-    const user=localStorage.getItem('email')
     const { productID } = useParams()
     const [product, setProduct] = useState({})
     const [, setListProduct] = useState()
@@ -157,7 +156,7 @@ function Person() {
         if (localStorage.getItem('email'))
         {
                 toggle()
-            let Storage = localStorage.getItem(user)
+            let Storage = localStorage.getItem('orderData')
             if (Storage) {
                 Storage = JSON.parse(Storage)
                 let infoProduct=product
@@ -171,13 +170,13 @@ function Person() {
                     if (item.productName === product.productName) {
                         kt = true
                         item.amount += count
-                        localStorage.setItem(user, JSON.stringify(Storage))
+                        localStorage.setItem('orderData', JSON.stringify(Storage))
                         break
                     }
                 }
                 if (kt === false) {
                     Storage.push(product)
-                    localStorage.setItem(user, JSON.stringify(Storage))
+                    localStorage.setItem('orderData', JSON.stringify(Storage))
                     disPatch(counterTotalProduct())
                     disPatch(counterTotalProduct())
                 }
@@ -187,7 +186,7 @@ function Person() {
                 infoProduct.amount=count
                 Storage = []
                 Storage.push(infoProduct)
-                localStorage.setItem(user, JSON.stringify(Storage))
+                localStorage.setItem('orderData', JSON.stringify(Storage))
                 disPatch(counterTotalProduct())
             }
         }
@@ -200,7 +199,7 @@ function Person() {
 
     useEffect(() => {
         window.scroll(0, 0)
-        axios.get(`/product/get-one-product/${productID}`)
+        getAPI(`/product/get-one-product/${productID}`)
             .then(res => {
                 setProduct(res.data.product)
                 setListDtail(res.data.product.listDtail)
@@ -209,7 +208,7 @@ function Person() {
     }, [productID])
 
     useEffect(() => {
-        axios.get(`/product/get-all-products`)
+        getAPI(`/product/get-all-products`)
             .then(res => {
                 setListProduct(res.data.products);
             })
@@ -260,7 +259,7 @@ function Person() {
                             {srcSide.map(function(value,index){
                                 return (
                                 <div key={index} className={cx("inside_Img_side")}>
-                                    <img src={"https://shope-b3.thaihm.site/"+ value} alt="" />
+                                    <img src={process.env.REACT_APP_BASE_URL + value} alt="" />
                                 </div>
                             )})}
                             <div><img className={cx("inside_Img")} src={src} alt={src}/></div>
@@ -276,7 +275,7 @@ function Person() {
                         {secondListDtail.map((value, index) => {
                             return (
                                 <div key={index} hidden={disable}>
-                                    <p>Giá: <span>{value.price?.toLocaleString('en-US', {style : 'currency', currency : 'VND'})}</span></p>
+                                    <p>Giá: <span>{value.price?.toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</span></p>
                                     <p>Ram: <span>{value.ram}</span></p>
                                     <p>Rom: <span>{value.rom}</span></p>
                                     <p>Trạng thái: <span>{value.status}</span></p>
@@ -285,14 +284,12 @@ function Person() {
                         })}
                         Màu Sắc: {listDtail.map((value, index) => {
                             return (
-                                <>
                                     <button
                                         key={index}
                                         className={cx(activeColor === index ? "active_item" : "")}
                                         onClick={changeStatus}
                                         onClickCapture={function () { changeImg(index) }}>{value.color}
                                     </button>
-                                </>
                             )
                         })}
                         <p><u>(Vui lòng chọn màu khi đặt hàng)</u></p>
