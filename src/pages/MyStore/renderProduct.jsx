@@ -81,14 +81,12 @@ function RenderProduct() {
 
 	const deleteAll = () => {
 		let newData = [];
-		console.log(checked);
 		if (checked.length > 0) {
 			data.map((value) => {
 				let kt = false;
 				for (let j = 0; j < checked.length; j++) {
 					if (value._id !== checked[j]) {
 						kt = true;
-						console.log(value, '=', checked[j]);
 					} else {
 						kt = false;
 						break;
@@ -174,8 +172,6 @@ function RenderProduct() {
 				<div className={styles.navTitle}>Thao Tác</div>
 			</div>
 			{data.map((value, index) => {
-				console.log(value)
-				console.log(process.env.REACT_APP_BASE_URL + value.imgP)
 				return (
 					<div className={styles.childProductContainer} key={index}>
 						<div className={styles.childProductContainerDeal}>
