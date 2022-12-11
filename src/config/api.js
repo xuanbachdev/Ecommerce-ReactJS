@@ -7,6 +7,12 @@ export const getAPI = function(url){
 export const postAPI = function(url, data){
     return axios.post(url,data)
 }
+
+export const postAPIAuth = function(url, data){
+    let token = JSON.parse(localStorage.getItem('Token'))
+    return axios.post(url,data, {headers: {Authorization: token}})
+}
+
 export const patchAPI = function(url, data){
     let token = JSON.parse(localStorage.getItem('Token'))
     return axios.patch(url,data, {headers: {Authorization: token}})
