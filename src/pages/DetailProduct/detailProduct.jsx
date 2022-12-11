@@ -13,6 +13,7 @@ import {
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from 'axios';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import HomeStore from "~/components/HomeStore/homeStore";
@@ -22,7 +23,6 @@ import Alert from '~/components/Alert/alert';
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import Modal from "~/components/Modal/modal";
-import { getAPI } from '~/config/api';
 
 const cx = classNames.bind(styles)
 var clone = [{
@@ -80,7 +80,7 @@ function Person() {
         var cloneListDtail = [...listDtail]
         var a = cloneListDtail.splice(index, 1)
         setSecondListDtail(a)
-        setSrc(process.env.REACT_APP_BASE_URL+ listDtail[index].listImg[0])
+        setSrc("https://shope-b3.thaihm.site/" + listDtail[index].listImg[0])
         setActiveColor(index)
         setSrcSide(listDtail[index].listImg)
     }
@@ -199,7 +199,7 @@ function Person() {
 
     useEffect(() => {
         window.scroll(0, 0)
-        getAPI(`/product/get-one-product/${productID}`)
+        axios.get(`/product/get-one-product/${productID}`)
             .then(res => {
                 setProduct(res.data.product)
                 setListDtail(res.data.product.listDtail)
@@ -208,7 +208,7 @@ function Person() {
     }, [productID])
 
     useEffect(() => {
-        getAPI(`/product/get-all-products`)
+        axios.get(`/product/get-all-products`)
             .then(res => {
                 setListProduct(res.data.products);
             })
@@ -216,7 +216,7 @@ function Person() {
     }, [])
 
     useEffect(() => {
-        setSrc(process.env.REACT_APP_BASE_URL+ product.thumbnail)
+        setSrc("https://shope-b3.thaihm.site/" + product.thumbnail)
     }, [product])
     return (
         <>
@@ -243,7 +243,7 @@ function Person() {
                                 key={index}
                                 onMouseOver={function () { changeImg(index) }}
                             >
-                                <img src={process.env.REACT_APP_BASE_URL+ value.listImg[0]} alt=""></img>
+                                <img src={"https://shope-b3.thaihm.site/" + value.listImg[0]} alt=""></img>
                             </button>
                         )
                     })}
@@ -259,7 +259,7 @@ function Person() {
                             {srcSide.map(function(value,index){
                                 return (
                                 <div key={index} className={cx("inside_Img_side")}>
-                                    <img src={process.env.REACT_APP_BASE_URL + value} alt="" />
+                                    <img src={"https://shope-b3.thaihm.site/"+ value} alt="" />
                                 </div>
                             )})}
                             <div><img className={cx("inside_Img")} src={src} alt={src}/></div>
@@ -275,10 +275,9 @@ function Person() {
                         {secondListDtail.map((value, index) => {
                             return (
                                 <div key={index} hidden={disable}>
-                                    <p>Giá: <span>{value.price?.toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})}</span></p>
+                                    <p>Giá: <span>{value.price?.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})}</span></p>
                                     <p>Ram: <span>{value.ram}</span></p>
                                     <p>Rom: <span>{value.rom}</span></p>
-                                    <p>Trạng thái: <span>{value.status}</span></p>
                                 </div>
                             )
                         })}
@@ -321,7 +320,6 @@ function Person() {
                                         <p>Giá: <span>{value.price}</span></p>
                                         <p>Ram: <span>{value.ram}</span></p>
                                         <p>Rom: <span>{value.rom}</span></p>
-                                        <p>Trạng thái: <span>{value.status}</span></p>
                                     </div>
                                 )
                             })}
@@ -379,7 +377,7 @@ function Person() {
                             {secondListDtail.map((value, index) => {
                                 return (
                                     <div key={index}>
-                                        <p>Giá: <span >{value.price}</span></p>
+                                        <p>Giá: <span >{value.price?.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})}</span></p>
                                         <p>Ram: <span >{value.ram}</span></p>
                                         <p>Rom: <span >{value.rom}</span></p>
                                         <p>Trạng thái: <span >{value.status}</span></p>
