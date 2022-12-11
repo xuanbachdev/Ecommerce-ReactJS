@@ -40,6 +40,7 @@ function Person() {
 
     const disPatch = useDispatch()
     const { productID } = useParams()
+    const [newId, setNewId] = useState(productID)
     const [product, setProduct] = useState({})
     const [, setListProduct] = useState()
     const [count, setCount] = useState(1)
@@ -62,7 +63,9 @@ function Person() {
     const [valueName, setValueName] = useState('')
     const [valuePhone, setValuePhone] = useState('')
     const [valueAddress, setValueAddress] = useState('')
-    var sum = count
+    let sum = count
+    let btnAddToCart = document.querySelector('#btnAddToCart')
+    btnAddToCart.setAttribute('title', 'Vui lòng chọn màu khi đặt hàng')
     function Minus() {
         if (sum >= 2 && sum <= 20) {
             sum -= 1
@@ -92,7 +95,10 @@ function Person() {
         if (secondListDtail[0].status === "disable") {
             setDisable(true)
         }
-        else (setDisable(false))
+        else{
+            (setDisable(false))
+            btnAddToCart.removeAttribute('title')
+        }
     }
 
     function changeAddressAll() {
@@ -155,7 +161,7 @@ function Person() {
     const handleOut = () => {
         setIsModalImgOpen(false);
     }
-    const HandleAddProduct = () => {
+    const handleAddToCart = () => {
         if (localStorage.getItem('email'))
         {
                 toggle()
@@ -294,7 +300,6 @@ function Person() {
                                     </button>
                             )
                         })}
-                        <p><u>(Vui lòng chọn màu khi đặt hàng)</u></p>
                     </div>
                     <div className={cx("addMinus")}>
                         <button onClick={Minus}>-</button>
@@ -302,7 +307,7 @@ function Person() {
                         <button onClick={Add}>+</button>
                     </div>
                     <div className={cx("function")}>
-                        <button className={cx(disable ? "disable" : "enable")} disabled={disable} onClick={HandleAddProduct}>Thêm Vào Giỏ Hàng</button>
+                        <button id={'btnAddToCart'} className={cx(disable ? "disable" : "enable")} disabled={disable} onClick={handleAddToCart}>Thêm Vào Giỏ Hàng</button>
                         <button className={cx(disable ? "disable" : "enable")} disabled={disable} onClick={showModal}>Mua Ngay</button>
                         <Modal open={isModalOpen}>
                             <form>
