@@ -60,8 +60,8 @@ function Product({data,index}) {
             <div className={cx("info")}>
                 <p className={cx("name")}>{data.productName}</p>
                 <p className={cx("price")}>
-                    {data.price?.toLocaleString('vi-VN', {style:'currency',currency:'VND'})}
-                    {/* :Number(21000000).toLocaleString('en-US', {style:'currency',currency:'VND'})} */}
+                    {data.price ? data.price.toLocaleString('vi-VN', {style:'currency',currency:'VND'})
+                    :'Liên hệ'}
                 </p>
             </div>
             <div className={cx('action')}>
