@@ -40,7 +40,7 @@ function Person() {
 
     const disPatch = useDispatch()
     const { productID } = useParams()
-    const [newId, setNewId] = useState(productID)
+    // const [newId, setNewId] = useState(productID)
     const [product, setProduct] = useState({})
     const [, setListProduct] = useState()
     const [count, setCount] = useState(1)
