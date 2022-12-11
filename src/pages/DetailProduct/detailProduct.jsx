@@ -68,6 +68,9 @@ function Person() {
             sum -= 1
             setCount(sum)
         }
+        else{
+            alert('Số lượng sản phẩm đã giảm đến mức tối thiểu');
+        }
     }
     function Add() {
         if (sum >= 1 && sum <= 19) {
@@ -80,7 +83,7 @@ function Person() {
         var cloneListDtail = [...listDtail]
         var a = cloneListDtail.splice(index, 1)
         setSecondListDtail(a)
-        setSrc("https://shope-b3.thaihm.site/" + listDtail[index].listImg[0])
+        setSrc(process.env.REACT_APP_BASE_URL + listDtail[index].listImg[0])
         setActiveColor(index)
         setSrcSide(listDtail[index].listImg)
     }
@@ -216,7 +219,7 @@ function Person() {
     }, [])
 
     useEffect(() => {
-        setSrc("https://shope-b3.thaihm.site/" + product.thumbnail)
+        setSrc(process.env.REACT_APP_BASE_URL + product.thumbnail)
     }, [product])
     return (
         <>
@@ -243,7 +246,7 @@ function Person() {
                                 key={index}
                                 onMouseOver={function () { changeImg(index) }}
                             >
-                                <img src={"https://shope-b3.thaihm.site/" + value.listImg[0]} alt=""></img>
+                                <img src={process.env.REACT_APP_BASE_URL + value.listImg[0]} alt=""></img>
                             </button>
                         )
                     })}
@@ -259,7 +262,7 @@ function Person() {
                             {srcSide.map(function(value,index){
                                 return (
                                 <div key={index} className={cx("inside_Img_side")}>
-                                    <img src={"https://shope-b3.thaihm.site/"+ value} alt="" />
+                                    <img src={process.env.REACT_APP_BASE_URL+ value} alt="" />
                                 </div>
                             )})}
                             <div><img className={cx("inside_Img")} src={src} alt={src}/></div>
