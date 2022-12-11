@@ -6,10 +6,8 @@ import styles from './checkout.module.scss';
 import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { loginCart } from '~/redux/reducer/authSlice';
-import { useEffect } from 'react';
 import axios from '~/config/axios';
+import { postAPIAuth } from '~/config/api';
 
 export const Checkout = () =>{
 	const nav = useNavigate()
@@ -27,7 +25,7 @@ export const Checkout = () =>{
 		if(inputName.current.value.trim() === ''){
 			msg.name = 'Vui lòng nhập tên'
 		}
-		if(inputName.current.value.length < 2){
+		else if(inputName.current.value.length < 2){
 			msg.name = 'Tên tối thiểu 2 ký tự'
 		}
 		setErrMess(msg)
@@ -80,6 +78,12 @@ export const Checkout = () =>{
 			address: address.current.value
 		}
 		if(!isValid) return
+		try{
+			await postAPIAuth('/order/create-order')
+		}
+		catch(err){
+			return err.response.data.message
+		}
 		axios.post('/order/create-order', data, {headers: {Authorization: token}})
 		.then(res => {
 				localStorage.removeItem('list_cart');
@@ -109,7 +113,7 @@ export const Checkout = () =>{
 				<h2>Thông tin khách hàng</h2>
 				<div className={styles.paymentInfo__content__info}>
 					<input
-						name='name`'
+						name='name'
 						type='text'
 						className={styles.paymentInfo__content__input}
 						placeholder='Tên người nhận( bắt buộc )'
