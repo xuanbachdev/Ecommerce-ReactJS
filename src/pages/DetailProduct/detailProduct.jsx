@@ -13,7 +13,6 @@ import {
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from 'axios';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import HomeStore from "~/components/HomeStore/homeStore";
@@ -23,6 +22,7 @@ import Alert from '~/components/Alert/alert';
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import Modal from "~/components/Modal/modal";
+import { getAPI } from '~/config/api';
 
 const cx = classNames.bind(styles)
 var clone = [{
@@ -40,12 +40,11 @@ function Person() {
 
     const disPatch = useDispatch()
     const { productID } = useParams()
-    // const [newId, setNewId] = useState(productID)
     const [product, setProduct] = useState({})
     const [, setListProduct] = useState()
     const [count, setCount] = useState(1)
-    const [listDtail, setListDtail] = useState([])
-    const [secondListDtail, setSecondListDtail] = useState(clone)
+    const [listDetail, setListDetail] = useState([])
+    const [secondListDetail, setsecondListDetail] = useState(clone)
     const [src, setSrc] = useState()
     const [srcSide, setSrcSide] = useState([])
     const [addressHn, setAddressHn] = useState(true)
@@ -65,7 +64,7 @@ function Person() {
     const [valueAddress, setValueAddress] = useState('')
     let sum = count
     let btnAddToCart = document.querySelector('#btnAddToCart')
-    btnAddToCart.setAttribute('title', 'Vui lòng chọn màu khi đặt hàng')
+    btnAddToCart?.setAttribute('title', 'Vui lòng chọn màu khi đặt hàng')
     function Minus() {
         if (sum >= 2 && sum <= 20) {
             sum -= 1
@@ -83,16 +82,16 @@ function Person() {
     }
 
     function changeImg(index) {
-        var cloneListDtail = [...listDtail]
-        var a = cloneListDtail.splice(index, 1)
-        setSecondListDtail(a)
-        setSrc(process.env.REACT_APP_BASE_URL + listDtail[index].listImg[0])
+        var cloneListDtail = [...listDetail]
+        var cloneData = cloneListDtail.splice(index, 1)
+        setsecondListDetail(cloneData)
+        setSrc(process.env.REACT_APP_BASE_URL + listDetail[index].listImg[0])
         setActiveColor(index)
-        setSrcSide(listDtail[index].listImg)
+        setSrcSide(listDetail[index].listImg)
     }
 
     function changeStatus() {
-        if (secondListDtail[0].status === "disable") {
+        if (secondListDetail[0].status === "disable") {
             setDisable(true)
         }
         else{
@@ -100,6 +99,7 @@ function Person() {
             btnAddToCart.removeAttribute('title')
         }
     }
+
 
     function changeAddressAll() {
         setAddressAll(false)
@@ -161,22 +161,25 @@ function Person() {
     const handleOut = () => {
         setIsModalImgOpen(false);
     }
-    const handleAddToCart = () => {
+
+    const handleAddToCart = async () => {
         if (localStorage.getItem('email'))
         {
                 toggle()
-            let Storage = localStorage.getItem('orderData')
+                let Storage = localStorage.getItem('orderData')
             if (Storage) {
                 Storage = JSON.parse(Storage)
                 let infoProduct=product
                 infoProduct.amount=count
-                infoProduct.color=secondListDtail[0].color
-                infoProduct.ram=secondListDtail[0].ram
-                infoProduct.rom=secondListDtail[0].rom
-                infoProduct.imgP=secondListDtail[0].listImg[0]
+                infoProduct.color=secondListDetail[0].color
+                infoProduct.ram=secondListDetail[0].ram
+                infoProduct.rom=secondListDetail[0].rom
+                infoProduct.price = secondListDetail[0].price
+                infoProduct.imgP=secondListDetail[0].listImg[0]
                 let kt = false
                 for (let item of Storage) {
-                    if (item.productName === product.productName) {
+                    console.log(item);
+                    if (item.productName === product.productName && item.productId === product.productId) {
                         kt = true
                         item.amount += count
                         localStorage.setItem('orderData', JSON.stringify(Storage))
@@ -208,16 +211,16 @@ function Person() {
 
     useEffect(() => {
         window.scroll(0, 0)
-        axios.get(`/product/get-one-product/${productID}`)
+        getAPI(`/product/get-one-product/${productID}`)
             .then(res => {
                 setProduct(res.data.product)
-                setListDtail(res.data.product.listDtail)
+                setListDetail(res.data.product.listDtail)
             })
             .catch(err => alert("Lỗi rồi!"))
     }, [productID])
 
     useEffect(() => {
-        axios.get(`/product/get-all-products`)
+        getAPI(`/product/get-all-products`)
             .then(res => {
                 setListProduct(res.data.products);
             })
@@ -246,7 +249,7 @@ function Person() {
             </div>
             <div className={cx("body")}>
                 <div className={cx("side_img")}>
-                    {listDtail.map((value, index) => {
+                    {listDetail.map((value, index) => {
                         return (
                             <button
                                 key={index}
@@ -281,7 +284,7 @@ function Person() {
                         <p>Nhãn hiệu: <span>{product.brand}</span></p>
                         <p>Tên sản phẩm: <span>{product.productName}</span></p>
                         <p>Mã sản phẩm: <span>{product._id}</span></p>
-                        {secondListDtail.map((value, index) => {
+                        {secondListDetail.map((value, index) => {
                             return (
                                 <div key={index} hidden={disable}>
                                     <p>Giá: <span>{value.price?.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})}</span></p>
@@ -290,7 +293,7 @@ function Person() {
                                 </div>
                             )
                         })}
-                        Màu Sắc: {listDtail.map((value, index) => {
+                        Màu Sắc: {listDetail.map((value, index) => {
                             return (
                                     <button
                                         key={index}
@@ -321,7 +324,7 @@ function Person() {
                             </form>
                             <br></br>
                             <label> Kiểm tra thông Số Sản Phẩm đã chọn:</label>
-                            {secondListDtail.map((value, index) => {
+                            {secondListDetail.map((value, index) => {
                                 return (
                                     <div key={index}>
                                         <p>Mã sản phẩm: <span>{value._id}</span></p>
@@ -382,7 +385,7 @@ function Person() {
                         <div hidden={hideExchange} onClick={hiddenExchange}>
                             <span className={cx("text")}>THÔNG SỐ SẢN PHẨM</span>
                             <span className={cx("plusicon")}><FontAwesomeIcon icon={faMinus} /></span>
-                            {secondListDtail.map((value, index) => {
+                            {secondListDetail.map((value, index) => {
                                 return (
                                     <div key={index}>
                                         <p>Giá: <span >{value.price?.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})}</span></p>
