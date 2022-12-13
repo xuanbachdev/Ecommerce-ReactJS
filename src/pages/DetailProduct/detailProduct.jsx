@@ -171,6 +171,7 @@ function Person() {
                 Storage = JSON.parse(Storage)
                 let infoProduct=product
                 infoProduct.amount=count
+                console.log(infoProduct.listDtail[0]._id);
                 infoProduct.color=secondListDetail[0].color
                 infoProduct.ram=secondListDetail[0].ram
                 infoProduct.rom=secondListDetail[0].rom
@@ -178,8 +179,7 @@ function Person() {
                 infoProduct.imgP=secondListDetail[0].listImg[0]
                 let kt = false
                 for (let item of Storage) {
-                    console.log(item);
-                    if (item.productName === product.productName && item.productId === product.productId) {
+                    if (item.productName === product.productName) {
                         kt = true
                         item.amount += count
                         localStorage.setItem('orderData', JSON.stringify(Storage))
