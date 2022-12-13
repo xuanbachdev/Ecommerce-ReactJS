@@ -171,14 +171,13 @@ function Person() {
                 Storage = JSON.parse(Storage)
                 let infoProduct=product
                 infoProduct.amount=count
-                console.log(infoProduct.listDtail[0]._id);
                 infoProduct.color=secondListDetail[0].color
                 infoProduct.ram=secondListDetail[0].ram
                 infoProduct.rom=secondListDetail[0].rom
                 infoProduct.price = secondListDetail[0].price
                 infoProduct.imgP=secondListDetail[0].listImg[0]
                 let kt = false
-                for (let item of Storage) {
+                for (let item in infoProduct) {
                     if (item.productName === product.productName) {
                         kt = true
                         item.amount += count
