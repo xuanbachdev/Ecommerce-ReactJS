@@ -177,7 +177,7 @@ function Person() {
                 infoProduct.price = secondListDetail[0].price
                 infoProduct.imgP=secondListDetail[0].listImg[0]
                 let kt = false
-                for (let item in infoProduct) {
+                for (let item of Storage) {
                     if (item.productName === product.productName) {
                         kt = true
                         item.amount += count
